@@ -19,13 +19,12 @@
                         <div class="menu--inner-area clearfix">
                             <div class="menu-wraper">
                                 <nav>
-
-                                    <!-- <div class="header-menu dosis">
+                                    <div class="header-menu dosis">
                                         <ul>
-                                            <li><a href="#features">Features</a></li>
-                                            <li><a href="#rekan">kerjasama</a></li>
+                                            <li><a href="#produk">Produk</a></li>
+                                            <li><a href="#kontak">Kontak</a></li>
                                         </ul>
-                                    </div> -->
+                                    </div> 
                                     <div class="mobile text-right">
                                         <a href="https://wa.me/6289655333987?text=Hi,%20saya%20ingin%20bekerjasama%20dengan%20BFI%20Syariah"
                                             class="btn btn-resize">Whatsapp</a>

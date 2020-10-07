@@ -3,23 +3,8 @@
 @section('title', 'Daftar Merchant BFI Syariah')
 	
 @section('content')
-		<!-- Preloader -->
-	<div class="preLoader">
-		<div class="preload-inner">
-			<div class="sk-cube-grid">
-				<div class="sk-cube sk-cube1"></div>
-				<div class="sk-cube sk-cube2"></div>
-				<div class="sk-cube sk-cube3"></div>
-				<div class="sk-cube sk-cube4"></div>
-				<div class="sk-cube sk-cube5"></div>
-				<div class="sk-cube sk-cube6"></div>
-				<div class="sk-cube sk-cube7"></div>
-				<div class="sk-cube sk-cube8"></div>
-				<div class="sk-cube sk-cube9"></div>
-			</div>
-		</div>
-	</div>
-	<!-- End Of Preloader -->
+	
+	<x-preloader />
 
 	<x-layout.header />
 
@@ -31,7 +16,7 @@
 					<div class="col-md-8 col-lg-6 col-xl-5">
 						<!-- banner text -->
 						<div class="banner-text-inner">
-							<div class="banner-shape-wrap">
+							{{-- <div class="banner-shape-wrap">
 								<div class="banner-shape-inner">
 									<img src="{{asset("img/banner/shaps1.png")}}" alt="" class='shape shape1 rotate3d'>
 									<img src="{{asset("img/banner/shaps2.png")}}" alt="" class='shape shape2 rotate2d'>
@@ -41,7 +26,7 @@
 									<img src="{{asset("img/banner/shaps6.png")}}" alt="" class='shape shape6 rotate-2d'>
 									<img src="{{asset("img/banner/shaps7.png")}}" alt="" class='shape shape7 rotate3d'>
 								</div>
-							</div>
+							</div> --}}
 
 							<h1>BFI Syariah mitra bisnis terpercaya anda</h1>
 							<p>Daftarkan usaha Anda di BFI Syariah dan tingkatkan penjualan bersama BFI Syariah dengan
@@ -85,7 +70,7 @@
 									</div>
 									<div class="form-group">
 										<!-- <input class="form-control mb-3" type="text" name="" id=""
-                                            placeholder="Bentuk Usaha" style="background-color: #F7F6F9;"> -->
+											placeholder="Bentuk Usaha" style="background-color: #F7F6F9;"> -->
 										<select name="Bentuk_Usaha" id="" class="form-control"
 											style="background-color: #F7F6F9;" required>
 											<option disabled selected value="">Pilih Bentuk Usaha Anda</option>
@@ -300,7 +285,7 @@
 	</section>
 	<!-- interact user -->
 
-	<!-- download app -->
+	<!-- isi formulir -->
 	<section class="pt-60 pb-120">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -316,8 +301,34 @@
 			</div>
 		</div>
 	</section>
-	<!-- End of download app -->
+	<!-- End of isi formulir -->
 
+	{{-- Paket --}}
+	<section class="pt-60 pb-120">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-3 col-md-3">
+					<div class="card" style="width: 18rem;">
+					<img class="card-img-top" src="{{ asset("img/bfi.png") }}" alt="Card image cap">
+						<div class="card-body">
+						  <h5 class="card-title">Pattaya Island Tour</h5>
+						  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						  <a href="#" class="btn btn-primary">Lihat Paket</a>
+						</div>
+					  </div>
+				</div>
+				<div class="col-lg-9 col-md-9">
+					<div class="row">
+
+					</div>
+					<div class="row">
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	{{-- End of paket --}}
 	<!-- back to top -->
 	<div class="back-to-top">
 		<a href="#"><i class="fa fa-chevron-up"></i></a>
@@ -355,5 +366,32 @@
 				// return false;
 			})
 		})
+	</script>
+
+	{{-- Include owl carousel --}}
+	<script src="owlcarousel/owl.carousel.min.js"></script>
+
+	<script>
+		//Owl Carousel
+		// $(document).ready(function(){
+		// 	$(".owl-carousel").owlCarousel({
+		// 		// loop:true,
+		// 		margin:10,
+		// 		autoWidth:true,
+		// 		autoHeight:true,
+		// 		nav:true,
+		// 		responsive:{
+		// 			0:{
+		// 				items:1
+		// 			},
+		// 			600:{
+		// 				items:1
+		// 			},
+		// 			1000:{
+		// 				items:1
+		// 			}
+		// 		}
+		// 	});
+		// })
 	</script>
 @endsection
