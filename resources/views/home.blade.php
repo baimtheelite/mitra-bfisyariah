@@ -5,6 +5,19 @@
     .card {
         display: inline-block
     }
+
+    .center {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        /* align-items: center; */
+    }
+
+    .flex-container {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
 </style>
 @endsection
 
@@ -14,19 +27,24 @@
 
 <x-layout.navbar />
 
-<div class="jumbotron jumbotron-fluid">
+{{-- Hero --}}
+<section>
+<div class="jumbotron jumbotron-fluid center" style="background-image: url('{{ asset('img/autumn.jpg') }}')">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 col-md-6">
-                <h1 class="display-4">Fluid jumbotron</h1>
+            <div class="col-lg-6 col-md-6 center text-white">
+                <h1 class="display-4">Pattaya Island</h1><br>
                 <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+                <p class="lead">
+                    <button class="btn btn-primary">Lihat</button>
+                </p>
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="card">
                     <div class="card-header bg-primary p-1"></div>
                     <div class="card-body">
                         <h2>Daftar Disini Untuk Segera Berlibur!</h2>
-                        <form action="#" method="POST">
+                        <form class="form-konsumen" action="#" method="POST">
                             <div class="form-group">
                                 <label for="nama_lengkap">Nama Lengkap</label>
                                 <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap">
@@ -57,7 +75,7 @@
                                 <input type="checkbox" class="form-check-input" id="agreement">
                                 <label class="form-check-label" for="agreement"><small class="text-muted">Saya menyetujui untuk dihubungi oleh BFI Finance melalui telepon dna berlangganan email produk</small></label>
                             </div>
-                            <button type="button" class="btn btn-primary btn-lg btn-block">Kirim Data</button>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block mt-4">Kirim Data</button>
                         </form>
                     </div>
                 </div>
@@ -65,118 +83,58 @@
         </div>
     </div>
 </div>
-<div class="container">
+</section>
 
-    <div class="row">
-        <div class="col-lg-12 col-md-12">
-            <p>Travel Partner Kami: </p>
-            <img src="{{ asset("img/aliyah.png") }}" alt="aliyah">
-            <img src="{{ asset("img/awmtour.png") }}" alt="awmtour">
-            <img src="{{ asset("img/buana.png") }}" alt="buana">
-            <img src="{{ asset("img/khalifah.png") }}" alt="khalifah">
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <p class="mb-0">Travel Partner Kami: </p>
+                <x-partner image="aliyah.png" />
+                <x-partner image="awmtour.png" />
+                <x-partner image="buana.png" />
+                <x-partner image="khalifah.png" />
+            </div>
         </div>
     </div>
+</section>
 
-    <section class="pt-4 pb-4">
+{{-- Banner --}}
+<section>
+    <div class="jumbotron" style="height: 50vh;background-image: url('{{ asset('img/autumn.jpg') }}')">
+    </div>
+</section>
+
+<section class="pt-4 pb-4">
+    <div class="container">
         <h2 class="text-center p-4">Paket Trip Pilihan</h2>
         <div class="row">
-            <div class="col-lg-2 col-md-2">
+            <div class="col-lg-4 col-md-4 mr-0">
                 <div class="card" style="width: 18rem;">
                 <img class="card-img-top" src="{{ asset("img/bfi.png") }}" alt="Card image cap">
                     <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
-                  </div>
+                    </div>
             </div>
-            <div class="col-lg-8 col-md-8 col-12 offset-2">
-                <div class="row">
-                    <div class="card-deck">
-                        <div class="card">
-                          <img class="card-img-top" src="{{ asset("img/bfi.png") }}" alt="Card image cap">
-                          <div class="card-body">
-                            <p class="card-text">Umroh Super Saver Double</p>
-                            <p class="card-text"><small class="text-muted">Rp 918,122 / Bulan</small></p>
-                          </div>
-                        </div>
-                        <div class="card">
-                          <img class="card-img-top" src="{{ asset("img/bfi.png") }}" alt="Card image cap">
-                          <div class="card-body">
-                            <p class="card-text">Umroh Super Saver Double</p>
-                            <p class="card-text"><small class="text-muted">Rp 918,122 / Bulan</small></p>
-                          </div>
-                        </div>
-                        <div class="card">
-                          <img class="card-img-top" src="{{ asset("img/bfi.png") }}" alt="Card image cap">
-                          <div class="card-body">
-                            <p class="card-text">Umroh Super Saver Double</p>
-                            <p class="card-text"><small class="text-muted">Rp 918,122 / Bulan</small></p>
-                          </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-2">
-                    <div class="card-deck">
-                        <div class="card">
-                            <img class="card-img-top" src="{{ asset("img/bfi.png") }}" alt="Card image cap">
-                            <div class="card-body">
-                            <p class="card-text">Umroh Super Saver Double</p>
-                            <p class="card-text"><small class="text-muted">Rp 918,122 / Bulan</small></p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img class="card-img-top" src="{{ asset("img/bfi.png") }}" alt="Card image cap">
-                            <div class="card-body">
-                            <p class="card-text">Umroh Super Saver Double</p>
-                            <p class="card-text"><small class="text-muted">Rp 918,122 / Bulan</small></p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img class="card-img-top" src="{{ asset("img/bfi.png") }}" alt="Card image cap">
-                            <div class="card-body">
-                            <p class="card-text">Umroh Super Saver Double</p>
-                            <p class="card-text"><small class="text-muted">Rp 918,122 / Bulan</small></p>
-                            </div>
-                        </div>
-                    </div>
+            <div class="col-lg-8 col-md-8 col-12">
+                <div class="flex-container">
+                    <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
+                    <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
+                    <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
+                    <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
+                    <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
+                    <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
                 </div>
             </div>
-        </div>
-    </section>
-
-</div>
-<footer class="p-4 bg-light">
-    <div class="row">
-        <div class="col-lg-3">
-            <h3>Kontak Kami</h3>
-            <ul>
-                <li>+62 888 888</li>
-                <li>bfisyariah@bfi.com</li>
-                <li>Find a store</li>
-            </ul>
-        </div>
-        <div class="col-lg-3">
-            <h3>Kontak Kami</h3>
-            <ul>
-                <li>+62 888 888</li>
-                <li>bfisyariah@bfi.com</li>
-                <li>Find a store</li>
-            </ul>
-            
-        </div>
-        <div class="col-lg-3">
-            <h3>Kontak Kami</h3>
-            <ul>
-                <li>+62 888 888</li>
-                <li>bfisyariah@bfi.com</li>
-                <li>Find a store</li>
-            </ul>
-
-        </div>
-        <div class="col-lg-3">
-
         </div>
     </div>
-</footer>
+</section>
+    
+
+{{-- Footbar --}}
+<x-layout.footbar />
+
 @endsection
