@@ -19,8 +19,6 @@
         flex-direction: row;
     }
 
-    /* The overlay effe@media only screen and (min-width: 768px) {
-ct - lays on top of the container and over the image */
     .overlay {
         position: absolute;
         bottom: 0;
@@ -32,10 +30,21 @@ ct - lays on top of the container and over the image */
         color: white;
         padding: 10px;
     }
+
     .form-konsumen {
-        position: absolute;
-        z-index: 999;
+        position: relative;
     }
+    @media only screen and (min-width: 992px){
+        .form-konsumen {
+            position: absolute;
+            z-index: 999;
+            top: -80px
+        }
+        .logo-container {
+            padding: 0px 0px 128px 168px;
+        }
+    }
+
 </style>
 @endsection
 
@@ -47,54 +56,56 @@ ct - lays on top of the container and over the image */
 
 {{-- Hero --}}
 <section>
-<div class="jumbotron jumbotron-fluid center" style="height: 500px; background-image: url('{{ asset('img/autumn.jpg') }}')">
+<div class="jumbotron jumbotron-fluid center" style="min-height: 500px; background-image: url('{{ asset('img/autumn.jpg') }}')">
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-6 center text-white">
-                <h1 class="display-4">Pattaya Island</h1><br>
-                <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
-                <p class="lead">
+                <h1 class="display-4">#JauhLebihTenang</h1><br>
+                <p class="lead">Dengan pembiayaan tanpa denda dan tanpa provisi di BFI Finance Syariah menggunakan akad dan proses syariah yang transaparan.</p>
+                {{-- <p class="lead">
                     <button class="btn btn-primary">Lihat</button>
-                </p>
+                </p> --}}
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="card form-konsumen">
-                    <div class="card-header bg-primary p-1"></div>
+                    <div class="card-header bg-primary p-1 m-0"></div>
                     <div class="card-body">
-                        <h2>Daftar Disini Untuk Segera Berlibur!</h2>
-                        <form action="#" method="POST">
-                            <div class="form-group">
-                                <label for="nama_lengkap">Nama Lengkap</label>
-                                <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap">
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Alamat Email</label>
-                                <input type="email" class="form-control" name="email" id="email">
-                            </div>
-                            <div class="form-row">
-                                <div class="col">
-                                    <label for="no_hp">Nomor Handphone</label>
-                                    <input type="no_hp" class="form-control" name="no_hp" id="no_hp">
+                        <div class="container">
+                            <h2 class="text-center">Isi formulir untuk pengajuan</h2>
+                            <form action="#" method="POST">
+                                <div class="form-group">
+                                    <label for="nama_lengkap">Nama Lengkap</label>
+                                    <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap">
                                 </div>
-                                <div class="col">
-                                    <label for="pekerjaan">Alamat Pekerjaan</label>
-                                    <input type="pekerjaan" class="form-control" name="pekerjaan" id="pekerjaan">
+                                <div class="form-group">
+                                    <label for="email">Alamat Email</label>
+                                    <input type="email" class="form-control" name="email" id="email">
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="provinsi">Provinsi</label>
-                                <input type="provinsi" class="form-control" name="provinsi" id="provinsi">
-                            </div>
-                            <div class="form-group">
-                                <label for="destinasi_travel">Destinasi Travel</label>
-                                <input type="destinasi_travel" class="form-control" name="destinasi_travel" id="destinasi_travel">
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="agreement">
-                                <label class="form-check-label" for="agreement"><small class="text-muted">Saya menyetujui untuk dihubungi oleh BFI Finance melalui telepon dna berlangganan email produk</small></label>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-lg btn-block mt-4">Kirim Data</button>
-                        </form>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <label for="no_hp">Nomor Handphone</label>
+                                        <input type="no_hp" class="form-control" name="no_hp" id="no_hp">
+                                    </div>
+                                    <div class="col">
+                                        <label for="cabang_terdekat">Cabang Terdekat</label>
+                                        <input type="text" class="form-control" name="cabang_terdekat" id="cabang_terdekat">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="jaminan_mobil">Mobil yang dijaminkan</label>
+                                    <input type="text" class="form-control" name="jaminan_mobil" id="jaminan_mobil">
+                                </div>
+                                <div class="form-group">
+                                    <label for="tujuan_pembiayaan">Tujuan Pembiayaan</label>
+                                    <input type="text" class="form-control" name="tujuan_pembiayaan" id="tujuan_pembiayaan">
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="agreement">
+                                    <label class="form-check-label" for="agreement"><small class="text-muted">Saya menyetujui untuk dihubungi oleh BFI Finance melalui telepon dna berlangganan email produk</small></label>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block mt-4">Kirim Data</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -103,17 +114,20 @@ ct - lays on top of the container and over the image */
 </div>
 </section>
 
+{{-- Merchant --}}
 <section>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-lg-6 col-md-6">
-                <p class="mb-0">Travel Partner Kami: </p>
-                <x-partner image="aliyah.png" />
-                <x-partner image="awmtour.png" />
-                <x-partner image="buana.png" />
-                <x-partner image="khalifah.png" />
+                <div class="logo-container">
+                    <p class="mb-0">Travel Partner Kami: </p>
+                    <x-partner image="aliyah.png" />
+                    <x-partner image="awmtour.png" />
+                    <x-partner image="buana.png" />
+                    <x-partner image="khalifah.png" />
+                </div>
             </div>
-            <div class="col-lg-6 col-md-6">
+            <div class="offset-6">
 
             </div>
         </div>
@@ -122,7 +136,7 @@ ct - lays on top of the container and over the image */
 
 {{-- Banner --}}
 <section>
-    <div class="jumbotron" style="height: 50vh;background-image: url('{{ asset('img/autumn.jpg') }}')">
+    <div class="jumbotron" style="height: 200px;background-image: url('{{ asset('img/autumn.jpg') }}')">
     </div>
 </section>
 

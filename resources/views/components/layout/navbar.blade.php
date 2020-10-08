@@ -1,4 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
     <a class="navbar-brand" href="#">
       <img src="{{ asset("img/bfi.png") }}" alt="bfi" style="height: 50px; width: auto">
     </a>
@@ -25,4 +26,5 @@
         class="btn btn-success">Whatsapp</a>
       </form>
     </div>
+  </div>
   </nav>
