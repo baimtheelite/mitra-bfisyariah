@@ -18,6 +18,24 @@
         flex-wrap: wrap;
         flex-direction: row;
     }
+
+    /* The overlay effe@media only screen and (min-width: 768px) {
+ct - lays on top of the container and over the image */
+    .overlay {
+        position: absolute;
+        bottom: 0;
+        background: rgb(0, 0, 0);
+        background: rgba(0, 0, 0, 0.5); /* Black see-through */
+        color: #f1f1f1;
+        width: 100%;
+        opacity:1;
+        color: white;
+        padding: 10px;
+    }
+    .form-konsumen {
+        position: absolute;
+        z-index: 999;
+    }
 </style>
 @endsection
 
@@ -29,7 +47,7 @@
 
 {{-- Hero --}}
 <section>
-<div class="jumbotron jumbotron-fluid center" style="background-image: url('{{ asset('img/autumn.jpg') }}')">
+<div class="jumbotron jumbotron-fluid center" style="height: 500px; background-image: url('{{ asset('img/autumn.jpg') }}')">
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-6 center text-white">
@@ -40,11 +58,11 @@
                 </p>
             </div>
             <div class="col-lg-6 col-md-6">
-                <div class="card">
+                <div class="card form-konsumen">
                     <div class="card-header bg-primary p-1"></div>
                     <div class="card-body">
                         <h2>Daftar Disini Untuk Segera Berlibur!</h2>
-                        <form class="form-konsumen" action="#" method="POST">
+                        <form action="#" method="POST">
                             <div class="form-group">
                                 <label for="nama_lengkap">Nama Lengkap</label>
                                 <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap">
@@ -88,12 +106,15 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 col-md-12">
+            <div class="col-lg-6 col-md-6">
                 <p class="mb-0">Travel Partner Kami: </p>
                 <x-partner image="aliyah.png" />
                 <x-partner image="awmtour.png" />
                 <x-partner image="buana.png" />
                 <x-partner image="khalifah.png" />
+            </div>
+            <div class="col-lg-6 col-md-6">
+
             </div>
         </div>
     </div>

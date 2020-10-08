@@ -25,6 +25,14 @@ Route::get('/home', function () {
     return view('home');
 });
 
+Route::get('/admin-wp', function () {
+    return view('admin.dashboard');
+});
+
+Route::get('/admin-wp/content', function () {
+    return view('admin.content');
+});
+
 Route::get('/upload', function () {
     return view('upload');
 });

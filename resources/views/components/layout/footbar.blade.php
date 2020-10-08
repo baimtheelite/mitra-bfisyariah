@@ -1,5 +1,5 @@
 <footer class="p-4 bg-secondary text-white">
-    <div class="row">
+    <div class="row mt-4">
         <div class="col-lg-3">
             <h5>Kontak Kami</h5>
             <ul>
