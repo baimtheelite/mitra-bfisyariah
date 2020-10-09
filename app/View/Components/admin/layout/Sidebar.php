@@ -1,10 +1,10 @@
 <?php
 
-namespace App\View\Components\admin;
+namespace App\View\Components\admin\layout;
 
 use Illuminate\View\Component;
 
-class Footer extends Component
+class Sidebar extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class Footer extends Component
      */
     public function render()
     {
-        return view('components.admin.footer');
+        return view('components.admin.layout.sidebar');
     }
 }

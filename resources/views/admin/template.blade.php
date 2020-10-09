@@ -8,22 +8,25 @@
   <title>AdminLTE 3 | Dashboard 3</title>
 
   <!-- Font Awesome Icons -->
-<link rel="stylesheet" href="{{ asset("administrator/plugins/fontawesome-free/css/all.min.css") }}">
+  <link rel="stylesheet" href="{{ asset("administrator/plugins/fontawesome-free/css/all.min.css") }}">
   <!-- IonIcons -->
   <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset("administrator/dist/css/adminlte.min.css") }}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="{{ asset("administrator/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css") }}">
+  <link rel="stylesheet" href="{{ asset("administrator/plugins/datatables-responsive/css/responsive.bootstrap4.min.css") }}">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
 
   {{-- Navbar --}}
-  <x-admin.navbar />
+  <x-admin.layout.navbar />
   
   {{-- Sidebar --}}
-  <x-admin.sidebar />
+  <x-admin.layout.sidebar />
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -38,7 +41,7 @@
   <!-- /.control-sidebar -->
 
   {{-- Footer --}}
-  <x-admin.footer />
+  <x-admin.layout.footer />
 </div>
 <!-- ./wrapper -->
 
@@ -55,6 +58,11 @@
 <script src="{{ asset("administrator/plugins/chart.js/Chart.min.js") }}"></script>
 <script src="{{ asset("administrator/dist/js/demo.js") }}"></script>
 <script src="{{ asset("administrator/dist/js/pages/dashboard3.js") }}"></script>
+<!-- DataTables -->
+<script src="{{ asset("administrator/plugins/datatables/jquery.dataTables.min.js") }} "></script>
+<script src="{{ asset("administrator/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js") }} "></script>
+<script src="{{ asset("administrator/plugins/datatables-responsive/js/dataTables.responsive.min.js") }} "></script>
+<script src="{{ asset("administrator/plugins/datatables-responsive/js/responsive.bootstrap4.min.js") }} "></script>
 
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-app.js"></script>
@@ -63,6 +71,7 @@
      https://firebase.google.com/docs/web/setup#available-libraries -->
 <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-analytics.js"></script>
 
+<script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-database.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-storage.js"></script>
 
 <script>

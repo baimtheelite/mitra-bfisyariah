@@ -56,7 +56,7 @@
 
 {{-- Hero --}}
 <section>
-<div class="jumbotron jumbotron-fluid center" style="min-height: 500px; background-image: url('{{ asset('img/autumn.jpg') }}')">
+<div class="jumbotron jumbotron-fluid center" style="background: rgba(0, 0, 0, 5);min-height: 500px; background-image: url('{{ asset('img/autumn.jpg') }}')">
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-6 center text-white">
@@ -71,39 +71,39 @@
                     <div class="card-header bg-primary p-1 m-0"></div>
                     <div class="card-body">
                         <div class="container">
-                            <h2 class="text-center">Isi formulir untuk pengajuan</h2>
-                            <form action="#" method="POST">
+                            <h2 class="text-center" style="padding-left: 40px; padding-right: 40px; margin-bottom: 32px;">Isi formulir untuk pengajuan</h2>
+                            <form id="form" action="" method="POST">
                                 <div class="form-group">
                                     <label for="nama_lengkap">Nama Lengkap</label>
-                                    <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap">
+                                    <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Alamat Email</label>
-                                    <input type="email" class="form-control" name="email" id="email">
+                                    <input type="email" class="form-control" name="email" id="email" required>
                                 </div>
                                 <div class="form-row">
                                     <div class="col">
                                         <label for="no_hp">Nomor Handphone</label>
-                                        <input type="no_hp" class="form-control" name="no_hp" id="no_hp">
+                                        <input type="no_hp" class="form-control" name="no_hp" id="no_hp" required>
                                     </div>
                                     <div class="col">
                                         <label for="cabang_terdekat">Cabang Terdekat</label>
-                                        <input type="text" class="form-control" name="cabang_terdekat" id="cabang_terdekat">
+                                        <input type="text" class="form-control" name="cabang_terdekat" id="cabang_terdekat" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="jaminan_mobil">Mobil yang dijaminkan</label>
-                                    <input type="text" class="form-control" name="jaminan_mobil" id="jaminan_mobil">
+                                    <input type="text" class="form-control" name="jaminan_mobil" id="jaminan_mobil" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="tujuan_pembiayaan">Tujuan Pembiayaan</label>
-                                    <input type="text" class="form-control" name="tujuan_pembiayaan" id="tujuan_pembiayaan">
+                                    <input type="text" class="form-control" name="tujuan_pembiayaan" id="tujuan_pembiayaan" required>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="agreement">
-                                    <label class="form-check-label" for="agreement"><small class="text-muted">Saya menyetujui untuk dihubungi oleh BFI Finance melalui telepon dna berlangganan email produk</small></label>
+                                    <input type="checkbox" class="form-check-input" id="agreement" required onclick="checkedAgreement()">
+                                    <label class="form-check-label" for="agreement"><small class="text-muted">Saya menyetujui untuk dihubungi oleh BFI Finance melalui telepon dan berlangganan email produk</small></label>
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-lg btn-block mt-4">Kirim Data</button>
+                                <button id="kirimData" type="submit" class="btn btn-primary btn-lg btn-block mt-4" disabled>Kirim Data</button>
                             </form>
                         </div>
                     </div>
@@ -140,21 +140,20 @@
     </div>
 </section>
 
+{{-- Paket Trip --}}
 <section class="pt-4 pb-4">
     <div class="container">
         <h2 class="text-center p-4">Paket Trip Pilihan</h2>
         <div class="row">
-            <div class="col-lg-4 col-md-4 mr-0">
-                <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="{{ asset("img/bfi.png") }}" alt="Card image cap">
+            <div class="col-lg-4 col-md-4 mr-0 card p-0">
+                <img class="card-img-top p-0 m-0" src="{{ asset("img/autumn.jpg") }}" alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <h5 class="card-title">Pattaya Island Tour</h5>
+                        <p class="card-text">Wujudkan impian ke tanah suci bersama My Ihram. Kami bekerjasama dengan AliaGo Tour and Travel mengadakan perjalanan umroh selama 9 hari.</p>
                         <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
-                    </div>
             </div>
-            <div class="col-lg-8 col-md-8 col-12">
+            <div class="col-lg-8 col-md-8 col-12 pt-0 pl-2">
                 <div class="flex-container">
                     <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
                     <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
@@ -172,4 +171,63 @@
 {{-- Footbar --}}
 <x-layout.footbar />
 
+@endsection
+
+@section('scripts')
+    <script>
+        var database = firebase.database();
+        var landingRef = database.ref('landingpage');
+
+        //get element
+        var form                = document.getElementById("form");
+        var nama_lengkap        = document.getElementById("nama_lengkap");
+        var email               = document.getElementById("email");
+        var no_hp               = document.getElementById("no_hp");
+        var cabang_terdekat     = document.getElementById("cabang_terdekat");
+        var jaminan_mobil       = document.getElementById("jaminan_mobil");
+        var tujuan_pembiayaan   = document.getElementById("tujuan_pembiayaan");
+        
+        var kirimData   = document.getElementById("kirimData");
+
+        const insertData = () => {
+            landingRef.push({
+                nama_lengkap        : nama_lengkap.value,
+                email               : email.value,
+                no_hp               : no_hp.value,
+                cabang_terdekat     : cabang_terdekat.value,
+                jaminan_mobil       : jaminan_mobil.value,
+                tujuan_pembiayaan   : tujuan_pembiayaan.value
+            }, function(error){
+                if(error){
+                    console.log(error);
+                } else {
+                    // alert("berhasil");
+                    swal("Good job!", "Data telah terkirim!", "success");
+                    kirimData.removeAttribute("disabled");
+                    kirimData.innerHTML = "Kirim Data";
+                }
+            })
+        }
+
+            form.addEventListener("submit", function(event){
+                event.preventDefault();
+                
+                kirimData.setAttribute("disabled", "disabled");
+                kirimData.innerHTML = "Mengirim...";
+                
+                insertData();
+                
+                form.reset();
+
+            })
+        
+        const checkedAgreement = () => {
+            var checkBox = document.getElementById("agreement");
+            
+            if(checkBox.checked)
+                kirimData.removeAttribute("disabled")
+            else
+                kirimData.setAttribute("disabled", "disabled");
+        }
+    </script>
 @endsection

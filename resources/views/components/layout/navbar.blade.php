@@ -1,3 +1,4 @@
+<div class="bg-primary" style="padding: 3px"></div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
     <a class="navbar-brand" href="#">
@@ -9,11 +10,11 @@
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Explore</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Produk</a>
+          <a class="nav-link" href="#">Promo</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Kontak</a>

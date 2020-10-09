@@ -1,10 +1,10 @@
 <?php
 
-namespace App\View\Components\admin;
+namespace App\View\Components\admin\layout;
 
 use Illuminate\View\Component;
 
-class Sidebar extends Component
+class Navbar extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class Sidebar extends Component
      */
     public function render()
     {
-        return view('components.admin.sidebar');
+        return view('components.admin.layout.navbar');
     }
 }

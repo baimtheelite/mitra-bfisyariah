@@ -19,56 +19,56 @@
 </div>
 <!-- /.content-header -->
 
- <!-- Main content -->
  <div class="content">
   <div class="container-fluid">
-    <!-- general form elements -->
     <div class="card card-primary">
       <div class="card-header">
         <h3 class="card-title">Logo Merchant</h3>
       </div>
-      <!-- /.card-header -->
-      <!-- form start -->
-      <form role="form">
-        <div class="card-body">
-          <div class="form-group">
-            <label for="nama_merchant">Nama Merchant</label>
-            <input type="email" class="form-control" id="nama_merchant" placeholder="Nama Merchant">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6 col-lg-6">
+            <form role="form">
+              <div class="form-group">
+                <label for="nama_merchant">Nama Merchant</label>
+                <input type="email" class="form-control" id="nama_merchant" placeholder="Nama Merchant">
+              </div>
+              <div class="form-group">
+                <label for="fileButton">File input</label>
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="fileButton" accept="image/png">
+                    <label class="custom-file-label" for="fileButton">Pilih logo</label>
+                  </div>
+                </div>
+                {{-- <progress value="0" max="100" id="uploader">0%</progress> --}}
+                <div class="progress mt-1">
+                  <div
+                    id="uploader"
+                    class="progress-bar progress-bar-striped"
+                    role="progressbar"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    style="width: 0%"
+                  >
+                  </div>
+                </div>
+              </div>
+            </form>
           </div>
-          <div class="form-group">
-            <label for="fileButton">File input</label>
-            <div class="input-group">
-              <div class="custom-file">
-                <input type="file" class="custom-file-input" id="fileButton">
-                <label class="custom-file-label" for="fileButton">Pilih logo</label>
-              </div>
-            </div>
-            {{-- <progress value="0" max="100" id="uploader">0%</progress> --}}
-            <div class="progress mt-1">
-              <div
-                id="uploader"
-                class="progress-bar progress-bar-striped"
-                role="progressbar"
-                aria-valuemin="0"
-                aria-valuemax="100"
-                style="width: 0%"
-              >
-              </div>
-            </div>
+          <div class="col-md-4 col-lg-4 offset-2">
+            <ul id="list-logo" class="list-group">
+              {{--  --}}
+            </ul>
           </div>
         </div>
-        <!-- /.card-body -->
-
+        </div>
         <div class="card-footer">
           <button id="submit" type="button" class="btn btn-primary">Submit</button>
         </div>
-      </form>
     </div>
-    <!-- /.card -->
   </div>
-  <!-- /.container-fluid -->
 </div>
-<!-- /.content -->
 @endsection
 
 @section('scripts')
@@ -126,6 +126,33 @@
     )
   })
 
+  //get element
+  var listLogo = document.getElementById("list-logo");
+  //untuk menampung list gambar
+  var content = '';
 
+  // Get Files List
+  var logoRef = firebase.storage().ref('mitra/');
+  logoRef.listAll().then((res) => {
+    res.items.forEach((itemRef) => {
+      // console.log(itemRef.name);
+      logoRef.child(itemRef.name).getDownloadURL().then((url) => {
+      // `url` is the download URL for 'landingpage/Panduan-SKPI-di-webstudent.pdf'
+
+      // Or inserted into an <img> element:
+      // var img = document.getElementById('myimg');
+      // img.src = url;
+
+      content += `<img src="${url}">`;
+      listLogo.innerHTML = content;
+      console.log(url);
+      }).catch((error) => {
+        console.log(error);
+      });
+    })
+  })
+
+  
 </script>
+
 @endsection
