@@ -1,0 +1,1 @@
+<li class="breadcrumb-item"><a href="{{ url($url) }}">{{ $item }}</a></li>

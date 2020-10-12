@@ -45,6 +45,10 @@
         }
     }
 
+    /* .form-konsumen, .form-konsumen .card-header  {
+        border-top: none;
+    } */
+
 </style>
 @endsection
 
@@ -56,18 +60,18 @@
 
 {{-- Hero --}}
 <section>
-<div class="jumbotron jumbotron-fluid center" style="background: rgba(0, 0, 0, 5);min-height: 500px; background-image: url('{{ asset('img/autumn.jpg') }}')">
+<div class="jumbotron jumbotron-fluid center" style="background-image: url('{{ asset('img/autumn.jpg') }}'); background: rgba(0, 0, 0, 0.5);min-height: 500px; ">
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-6 center text-white">
-                <h1 class="display-4">#JauhLebihTenang</h1><br>
+                <h1 class="display-4" style="word-wrap: break-word">#JauhLebihTenang</h1><br>
                 <p class="lead">Dengan pembiayaan tanpa denda dan tanpa provisi di BFI Finance Syariah menggunakan akad dan proses syariah yang transaparan.</p>
                 {{-- <p class="lead">
                     <button class="btn btn-primary">Lihat</button>
                 </p> --}}
             </div>
             <div class="col-lg-6 col-md-6">
-                <div class="card form-konsumen">
+                <div class="card shadow form-konsumen">
                     <div class="card-header bg-primary p-1 m-0"></div>
                     <div class="card-body">
                         <div class="container">
@@ -121,10 +125,12 @@
             <div class="col-lg-6 col-md-6">
                 <div class="logo-container">
                     <p class="mb-0">Travel Partner Kami: </p>
-                    <x-partner image="aliyah.png" />
-                    <x-partner image="awmtour.png" />
-                    <x-partner image="buana.png" />
-                    <x-partner image="khalifah.png" />
+                    <div id="image-container">
+                        {{-- <x-partner image="aliyah.png" />
+                        <x-partner image="awmtour.png" />
+                        <x-partner image="buana.png" />
+                        <x-partner image="khalifah.png" /> --}}
+                    </div>
                 </div>
             </div>
             <div class="offset-6">
@@ -174,9 +180,22 @@
 @endsection
 
 @section('scripts')
+    {{-- Simpan Form Data --}}
     <script>
+        //get reference
         var database = firebase.database();
-        var landingRef = database.ref('landingpage');
+        var formRef = database.ref('form');
+
+        //get timestamp UTC
+        var d = new Date();
+        var date = d.getUTCDate();
+        var month = d.getUTCMonth();
+        var year = d.getUTCFullYear();
+        var hours = d.getUTCHours();
+        var minutes = d.getUTCMinutes();
+        var seconds = d.getUTCSeconds();
+
+        var fulldate = `${date}-${month}-${year} ${hours}:${minutes}:${seconds}`;
 
         //get element
         var form                = document.getElementById("form");
@@ -190,36 +209,38 @@
         var kirimData   = document.getElementById("kirimData");
 
         const insertData = () => {
-            landingRef.push({
+            formRef.push({
                 nama_lengkap        : nama_lengkap.value,
                 email               : email.value,
                 no_hp               : no_hp.value,
                 cabang_terdekat     : cabang_terdekat.value,
                 jaminan_mobil       : jaminan_mobil.value,
-                tujuan_pembiayaan   : tujuan_pembiayaan.value
+                tujuan_pembiayaan   : tujuan_pembiayaan.value,
+                created_at          : fulldate
             }, function(error){
                 if(error){
                     console.log(error);
                 } else {
-                    // alert("berhasil");
+                    // Memunculkan alert success
                     swal("Good job!", "Data telah terkirim!", "success");
+                    // Enable button kirim
                     kirimData.removeAttribute("disabled");
+                    // 
                     kirimData.innerHTML = "Kirim Data";
+
+                    form.reset();
                 }
             })
         }
 
-            form.addEventListener("submit", function(event){
-                event.preventDefault();
-                
-                kirimData.setAttribute("disabled", "disabled");
-                kirimData.innerHTML = "Mengirim...";
-                
-                insertData();
-                
-                form.reset();
-
-            })
+        form.addEventListener("submit", function(event){
+            event.preventDefault();
+            
+            kirimData.setAttribute("disabled", "disabled");
+            kirimData.innerHTML = "Mengirim...";
+            
+            insertData();
+        })
         
         const checkedAgreement = () => {
             var checkBox = document.getElementById("agreement");
@@ -230,4 +251,28 @@
                 kirimData.setAttribute("disabled", "disabled");
         }
     </script>
+
+    {{-- Get Logo Partner --}}
+<script>
+    //get element
+    var listLogo = document.querySelector("#image-container");
+    //untuk menampung list gambar
+    var content = '';
+
+    // Get Files List
+    var logoRef = firebase.storage().ref('mitra/');
+    logoRef.listAll().then((res) => {
+        res.items.forEach((itemRef) => {
+        // console.log(itemRef.name);
+        logoRef.child(itemRef.name).getDownloadURL().then((url) => {
+
+        content += `<x-partner image="${url}" />`;
+        listLogo.innerHTML = content;
+        console.log(url);
+        }).catch((error) => {
+            console.log(error);
+        });
+        })
+    })
+</script>
 @endsection

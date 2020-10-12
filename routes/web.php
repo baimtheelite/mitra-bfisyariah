@@ -21,12 +21,27 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/admin-wp', function () {
-    return view('admin.dashboard');
+Route::get('/home-v2', function () {
+    return view('home-v2');
 });
 
-Route::get('/admin-wp/content', function () {
-    return view('admin.content');
+Route::get('/kontak', function () {
+    return view('kontak');
+});
+
+// route halaman admin
+Route::prefix('admin-wp')->group(function () {
+    Route::get('/', function () {
+        return view('admin.dashboard');
+    });
+
+    Route::get('content', function () {
+        return view('admin.content');
+    });
+
+    Route::get('page', function () {
+        return view('admin.page');
+    });
 });
 
 Route::get('/upload', function () {

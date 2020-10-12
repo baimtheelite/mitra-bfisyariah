@@ -1,23 +1,29 @@
 @extends('admin.template')
 
+@section('title', 'Content')
+
+
+@section('style')
+    <style>
+      ul#list-logo {
+        overflow-x: scroll
+      }
+      
+      img {
+        width: auto;
+        height: 150px;
+        object-fit: cover;
+      }
+    </style>
+@endsection
+
 @section('content')
-<!-- Content Header (Page header) -->
-<div class="content-header">
-  <div class="container-fluid">
-    <div class="row mb-2">
-      <div class="col-sm-6">
-        <h1 class="m-0 text-dark">Dashboard v3</h1>
-      </div><!-- /.col -->
-      <div class="col-sm-6">
-        <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">Dashboard v3</li>
-        </ol>
-      </div><!-- /.col -->
-    </div><!-- /.row -->
-  </div><!-- /.container-fluid -->
-</div>
-<!-- /.content-header -->
+
+{{-- Content Header --}}
+<x-admin.content-header title="Dashboard">
+  <x-admin.breadcrumb-item url="/admin-wp" item="Dashboard" />
+  <x-admin.breadcrumb-item url="/admin-wp/content" item="Content" />
+</x-admin.content-header>
 
  <div class="content">
   <div class="container-fluid">
@@ -27,14 +33,10 @@
       </div>
       <div class="card-body">
         <div class="row">
-          <div class="col-md-6 col-lg-6">
+          <div class="col-md-12 col-lg-12">
             <form role="form">
               <div class="form-group">
-                <label for="nama_merchant">Nama Merchant</label>
-                <input type="email" class="form-control" id="nama_merchant" placeholder="Nama Merchant">
-              </div>
-              <div class="form-group">
-                <label for="fileButton">File input</label>
+                <label for="fileButton">Upload Logo Merchant</label>
                 <div class="input-group">
                   <div class="custom-file">
                     <input type="file" class="custom-file-input" id="fileButton" accept="image/png">
@@ -56,11 +58,6 @@
               </div>
             </form>
           </div>
-          <div class="col-md-4 col-lg-4 offset-2">
-            <ul id="list-logo" class="list-group">
-              {{--  --}}
-            </ul>
-          </div>
         </div>
         </div>
         <div class="card-footer">
@@ -72,7 +69,6 @@
 @endsection
 
 @section('scripts')
-
 
 <script>
   // Get Elements
@@ -137,13 +133,10 @@
     res.items.forEach((itemRef) => {
       // console.log(itemRef.name);
       logoRef.child(itemRef.name).getDownloadURL().then((url) => {
-      // `url` is the download URL for 'landingpage/Panduan-SKPI-di-webstudent.pdf'
 
-      // Or inserted into an <img> element:
-      // var img = document.getElementById('myimg');
-      // img.src = url;
-
-      content += `<img src="${url}">`;
+      content += `<div class="item">
+        <img src="${url}">
+      </div>`;
       listLogo.innerHTML = content;
       console.log(url);
       }).catch((error) => {
@@ -153,6 +146,13 @@
   })
 
   
+</script>
+
+{{-- Owl Carousel --}}
+<script>
+$(document).ready(function(){
+  $(".owl-carousel").owlCarousel();
+})
 </script>
 
 @endsection

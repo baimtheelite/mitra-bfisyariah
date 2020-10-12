@@ -1,34 +1,25 @@
 @extends('admin.template')
 
+@section('title', 'Dashboard')
+
 @section('content')
-  <!-- Content Header (Page header) -->
-  <div class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-2">
-        <div class="col-sm-6">
-          <h1 class="m-0 text-dark">Dashboard v3</h1>
-        </div><!-- /.col -->
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Dashboard v3</li>
-          </ol>
-        </div><!-- /.col -->
-      </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
-  </div>
+
+  {{-- Content Header --}}
+  <x-admin.content-header title="Dashboard">
+    <x-admin.breadcrumb-item url="/admin-wp" item="Dashboard" />
+  </x-admin.content-header>
   
   <div class="content">
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-12">
-
+          <button class="btn btn-primary" onclick="addData()">click me asshole</button>
           <div class="card">
             <div class="card-header border-0">
               <h3 class="card-title">Data Form</h3>
             </div>
             <div class="card-body table-responsive p-0">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="data-form" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>Nama Lengkap</th>
@@ -40,7 +31,7 @@
                 </tr>
                 </thead>
                 <tbody id="list-data">
-
+                  {{--  --}}
                 </tbody>
               </table>
             </div>
@@ -53,24 +44,40 @@
 
 @section('scripts')
 <script>
-  //get element
-  var listData = document.getElementById("list-data");
-  var content = '';
-  var formRef = firebase.database().ref('landingpage/');
-  formRef.on('value', function(snapshot) {
-    // updateStarCount(postElement, snapshot.val());
-    snapshot.forEach((child) => {
-      console.log(child.val());
-      content += `<tr>
-          <td>${child.val().nama_lengkap}</td>
-          <td>${child.val().email}</td>
-          <td>${child.val().no_hp}</td>
-          <td>${child.val().cabang_terdekat}</td>
-          <td>${child.val().jaminan_mobil}</td>
-          <td>${child.val().tujuan_pembiayaan}</td>
-        </tr>`
-    })
-      listData.innerHTML = content;
-  });
+
+  const addData = () => {
+    var dataTable = $("#data-form").dataTable();
+    //       child.val().no_hp,
+    // content = [
+    //       child.val().nama_lengkap,
+    //       child.val().email,
+    //       child.val().cabang_terdekat,
+    //       child.val().jaminan_mobil,
+    //       child.val().tujuan_pembiayaan
+    //       ];
+    dataTable.rows.add(["Rhoma Fucking Irama", "roma@gmail.com", "08961881922", "Camry", "Buat Kuliah"]).draw();
+    console.log("clicked");
+  }
+
+    //get element
+    var listData = document.getElementById("list-data");
+    var content = [];
+    var formRef = firebase.database().ref('form/');
+    formRef.on('value', function(snapshot) {
+      // updateStarCount(postElement, snapshot.val());
+      snapshot.forEach((child) => {
+        // content += `<tr>
+        //     <td>${child.val().nama_lengkap}</td>
+        //     <td>${child.val().email}</td>
+        //     <td>${child.val().no_hp}</td>
+        //     <td>${child.val().cabang_terdekat}</td>
+        //     <td>${child.val().jaminan_mobil}</td>
+        //     <td>${child.val().tujuan_pembiayaan}</td>
+        //   </tr>`        
+        // listData.innerHTML = content;
+    });
+  })
+
+  
 </script>  
 @endsection 

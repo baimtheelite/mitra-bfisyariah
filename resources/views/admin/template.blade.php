@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>AdminLTE 3 | Dashboard 3</title>
+  <title>Admin BFI Syariah - @yield('title')</title>
+
+  {{-- Favicon --}}
+<link rel="shortcut icon" href="{{ asset('img/bfi.png') }}">
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{ asset("administrator/plugins/fontawesome-free/css/all.min.css") }}">
@@ -18,6 +21,11 @@
   <!-- DataTables -->
   <link rel="stylesheet" href="{{ asset("administrator/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css") }}">
   <link rel="stylesheet" href="{{ asset("administrator/plugins/datatables-responsive/css/responsive.bootstrap4.min.css") }}">
+  {{-- Owl Carousel --}}
+  <link rel="stylesheet" href="{{ asset("css/owl.carousel.min.css") }}">
+  <link rel="stylesheet" href="{{ asset("css/owl.theme.default.min.css") }}">
+
+  @yield('style')
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -63,6 +71,9 @@
 <script src="{{ asset("administrator/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js") }} "></script>
 <script src="{{ asset("administrator/plugins/datatables-responsive/js/dataTables.responsive.min.js") }} "></script>
 <script src="{{ asset("administrator/plugins/datatables-responsive/js/responsive.bootstrap4.min.js") }} "></script>
+{{-- Owl Carousel --}}
+<script src="{{ asset("js/owl.carousel.min.js") }} "></script>
+
 
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-app.js"></script>
