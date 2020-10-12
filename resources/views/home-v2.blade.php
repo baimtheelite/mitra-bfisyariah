@@ -1,3 +1,53 @@
+@php
+    $branches = [
+        "Balikpapan Syariah",
+        "Bandung Syariah",
+        "Banjarmasin Syariah",
+        "Batam Syariah",
+        "Bekasi Syariah",
+        "Bogor Syariah",
+        "BSD Syariah",
+        "BukitTinggi Syariah",
+        "Cawang Syariah",
+        "Cirebon Syariah",
+        "Depok Syariah",
+        "Gorontalo Syariah",
+        "Gresik Syariah",
+        "Jakarta Selatan Syariah",
+        "Jakarta Utara Syariah",
+        "Jambi Syariah",
+        "Karawang Syariah",
+        "Kediri Syariah",
+        "Kendari Syariah",
+        "Kudus Syariah",
+        "Lampung Syariah",
+        "Makassar Syariah",
+        "Malang Syariah",
+        "Mataram Syariah",
+        "Medan Syariah",
+        "Meruya Syariah",
+        "Mojokerto Syariah",
+        "Padang Syariah",
+        "Palangkaraya Syariah",
+        "Palembang Syariah",
+        "Pekanbaru Syariah",
+        "Pontianak Syariah",
+        "Purwokerto Syariah",
+        "Samarinda Syariah",
+        "Semarang Syariah",
+        "Sidoarjo Syariah",
+        "Solo Syariah",
+        "Sorong Syariah",
+        "Sukabumi Syariah",
+        "Sunter Syariah",
+        "Surabaya Syariah",
+        "Tangerang Syariah",
+        "Tasikmalaya Syariah",
+        "Ternate Syariah",
+        "Yogyakarta Syariah"
+    ];
+@endphp
+
 @extends('template')
 
 @section('style')
@@ -10,7 +60,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-         align-items: center; 
+        align-items: center; 
     }
 
     .flex-container {
@@ -56,7 +106,7 @@
 
 {{-- Hero --}}
 <section>
-    <div class="jumbotron jumbotron-fluid" style="background-image: url('{{ asset('img/autumn.jpg') }}'); background: rgba(0, 0, 0, 0.5);min-height: 500px; ">
+    <div class="jumbotron jumbotron-fluid text-center" style="background-image: url('{{ asset('img/autumn.jpg') }}'); background: rgba(0, 0, 0, 0.5);min-height: 500px; ">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 text-white">
@@ -94,13 +144,13 @@
                             </div>
                             <div class="col-lg-4 col-md-4">
                                 <label for="no_hp">Nomor Handphone</label>
-                                <input type="no_hp" class="form-control" name="no_hp" id="no_hp" required>
+                                <input type="text" class="form-control" name="no_hp" id="no_hp" minlength="7" maxlength="14" onkeypress="return isNumberKey(event)" required>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-lg-4 col-md-4">
                                 <label for="nilai_pembiayaan">Nilai Pembiayaan</label>
-                                <input type="text" class="form-control" name="nilai_pembiayaan" id="nilai_pembiayaan" required>
+                                <input type="text" class="form-control" name="nilai_pembiayaan" id="nilai_pembiayaan" onkeypress="return isNumberKey(event)" required>
                             </div>
                             <div class="col-lg-4 col-md-4">
                                 <label for="tujuan_pembiayaan">Tujuan Pembiayaan</label>
@@ -108,7 +158,13 @@
                             </div>
                             <div class="col-lg-4 col-md-4">
                                 <label for="cabang_terdekat">Cabang Terdekat</label>
-                                <input type="text" class="form-control" name="cabang_terdekat" id="cabang_terdekat" required>
+                                {{-- <input type="text" class="form-control" name="cabang_terdekat" id="cabang_terdekat" required> --}}
+                                <select class="form-control" name="cabang_terdekat" id="cabang_terdekat">
+                                    <option selected disabled value="">- Pilih Cabang -</option>
+                                    @foreach ($branches as $branch)
+                                    <option value="{{ $branch }}">{{ $branch }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <hr>
@@ -123,14 +179,21 @@
                             </div>
                             <div class="col-lg-4 col-md-4">
                                 <label for="waktu_dihubungi">Dihubungi pada waktu</label>
-                                <input type="text" class="form-control" name="waktu_dihubungi" id="waktu_dihubungi" required>
+                                {{-- <input type="text" class="form-control" name="waktu_dihubungi" id="waktu_dihubungi" required> --}}
+                                <select class="form-control" name="waktu_dihubungi" id="waktu_dihubungi" required>
+                                    <option selected disabled value="">- Pilih Waktu -</option>
+                                    <option value="Pagi">Pagi</option>
+                                    <option value="Siang">Siang</option>
+                                    <option value="Sore">Sore</option>
+                                </select>
                             </div>
     
                         </div>
                     
-                        <div class="form-check">
+                        <div class="form-check mt-4">
                             <input type="checkbox" class="form-check-input" id="agreement" required onclick="checkedAgreement()">
-                            <label class="form-check-label" for="agreement"><small class="text-muted">Saya menyetujui untuk dihubungi oleh BFI Finance melalui telepon dan berlangganan email produk</small></label>
+                            <label class="form-check-label" for="agreement"><small class="text-muted">Saya menyetujui untuk mengirimkan data diatas dan bersedia untuk dihubungi oleh PT BFI Finance Indonesia serta
+                                berlangganan email promosi.</small></label>
                         </div>
                         <button id="kirimData" type="submit" class="btn btn-primary btn-lg btn-block mt-4" disabled>Kirim Data</button>
                     </form>
@@ -197,6 +260,16 @@
 @endsection
 
 @section('scripts')
+    {{-- input number only --}}
+    <script>
+        function isNumberKey(evt){
+            var charCode = (evt.which) ? evt.which : evt.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }
+    </script>
+
     <script>
         var database = firebase.database();
         var formRef = database.ref('form');
