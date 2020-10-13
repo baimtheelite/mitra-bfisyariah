@@ -81,6 +81,8 @@
         padding: 10px;
     }
     .form-konsumen {
+        padding: 0;
+        margin: 0;
         position: relative;
         bottom: 200px;
         z-index: 999;
@@ -91,9 +93,28 @@
     .form-konsumen, .form-konsumen .card-header  {
         border-top: none;
     }
-    .form-row .col {
+    /* .form-row .col {
         padding: 16px
+    } */
+
+    .hero {
+        /* background-image: url('{{ asset('img/autumn.jpg') }}');  */
+        
+        min-height: 500px;
+        padding-top: 50px;
+        padding-left: 20%;
+        padding-right: 20%;
     }
+
+    .secondary {
+        background: #F1F3F2;
+    }
+
+    .form-row>.col, .form-row>[class*=col-] {
+        padding: 12px;
+    /* padding-right: 5px; */ 
+     /* padding-left: 5px; */
+}
 
 </style>
 @endsection
@@ -106,15 +127,17 @@
 
 {{-- Hero --}}
 <section>
-    <div class="jumbotron jumbotron-fluid text-center" style="background-image: url('{{ asset('img/autumn.jpg') }}'); background: rgba(0, 0, 0, 0.5);min-height: 500px; ">
+    <div class="jumbotron jumbotron-fluid text-center" style="background: rgba(0, 0, 0, 0.5);">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 text-white">
-                    <h1 class="display-4" style="word-wrap: break-word">#JauhLebihTenang</h1><br>
-                    <p class="lead">Dengan pembiayaan tanpa denda dan tanpa provisi di BFI Finance Syariah menggunakan akad dan proses syariah yang transaparan.</p>
-                    {{-- <p class="lead">
-                        <button class="btn btn-primary">Lihat</button>
-                    </p> --}}
+                    <div class="hero">
+                        <h1 class="display-4" style="word-wrap: break-word">#JauhLebihTenang</h1><br>
+                        <p class="lead">Menggapai mimpi anda dengan pembiayaan tanpa denda dan tanpa provisi di BFI Finance Syariah. </p>
+                        {{-- <p class="lead">
+                            <button class="btn btn-primary">Lihat</button>
+                        </p> --}}
+                    </div>
                 </div>
                 {{-- <div class="offset-6">
                     
@@ -124,7 +147,7 @@
     </div>
 </section>
 
-{{-- empty section --}}
+{{-- form section --}}
 <section>
     <div class="container">
         <div class="card shadow form-konsumen">
@@ -132,7 +155,7 @@
             <div class="card-body">
                 <div class="container">
                     <h2 class="text-center p-4">Isi formulir untuk pengajuan</h2>
-                    <form id="form" action="" method="POST">
+                    <form id="form" action="" method="POST" autocomplete="off">
                         <div class="form-row">
                             <div class="col-lg-4 col-md-4">
                                 <label for="nama_lengkap">Nama Lengkap</label>
@@ -198,6 +221,25 @@
                         <button id="kirimData" type="submit" class="btn btn-primary btn-lg btn-block mt-4" disabled>Kirim Data</button>
                     </form>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{-- feature section --}}
+<section class="secondary" style="padding: 5%">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4">
+                <x-card-feature image="img/bfi.png" title="Tanpa Denda" text="Keringanan untuk anda dengan tidak ada biaya keterlambatan pembayaran angsuran" />
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <x-card-feature image="img/bfi.png" title="Tanpa Provisi" text="Tidak dikenakan biaya provisi pada pembiayaan
+                di BFI Finance Syariah" />
+            </div>
+            <div class="col-lg-4 col-md-4">                
+                <x-card-feature image="img/bfi.png" title="Akad Syariah" text="Transaksi murni jual-beli bukan menerima
+                dana tunai seperti konvensional" />
             </div>
         </div>
     </div>
@@ -275,25 +317,30 @@
         var formRef = database.ref('form');
 
         //get element
-        var form                = document.getElementById("form");
-        var nama_lengkap        = document.getElementById("nama_lengkap");
-        var email               = document.getElementById("email");
-        var no_hp               = document.getElementById("no_hp");
-        var cabang_terdekat     = document.getElementById("cabang_terdekat");
-        var jaminan_mobil       = document.getElementById("jaminan_mobil");
-        var tujuan_pembiayaan   = document.getElementById("tujuan_pembiayaan");
-        
         var kirimData   = document.getElementById("kirimData");
 
-        const insertData = () => {
-            formRef.push({
-                nama_lengkap        : nama_lengkap.value,
-                email               : email.value,
-                no_hp               : no_hp.value,
-                cabang_terdekat     : cabang_terdekat.value,
-                jaminan_mobil       : jaminan_mobil.value,
-                tujuan_pembiayaan   : tujuan_pembiayaan.value
-            }, function(error){
+        // event ketika form data konsumen di submit
+        $("#form").on("submit", function(event){
+            event.preventDefault();
+
+            //membuat tombol kirim tidak bisa dipencet
+            kirimData.setAttribute("disabled", "disabled");
+            //mengubah teks tombol kirim menjadi 'mengirim...'
+            kirimData.innerHTML = "Mengirim...";
+            // kirimData.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            //                         <span class="sr-only">Loading...</span>`;
+
+            // variabel kosong untuk menampung input form
+            var dataObject = {};
+            // menangkap (get) attribute name dan value dari form input
+            var data = $(this).serializeArray();
+            // membuat pasangan key dan value ke dalam 1 object
+            data.forEach((item, index) => {
+                eval("dataObject." + item['name'] + " = item['value']");
+            })
+
+            
+            formRef.push(dataObject, function(error){
                 if(error){
                     console.log(error);
                 } else {
@@ -301,23 +348,15 @@
                     swal("Good job!", "Data telah terkirim!", "success");
                     // Enable button kirim
                     kirimData.removeAttribute("disabled");
-                    // 
+                    // mengubah kembali tulisan 'kirim data'
                     kirimData.innerHTML = "Kirim Data";
-
+                    // mengosongkan kembali form data
                     form.reset();
                 }
             })
-        }
-
-        form.addEventListener("submit", function(event){
-            event.preventDefault();
-            
-            kirimData.setAttribute("disabled", "disabled");
-            kirimData.innerHTML = "Mengirim...";
-            
-            insertData();
         })
         
+        //method untuk menghidupkan/mematikan tombol submit
         const checkedAgreement = () => {
             var checkBox = document.getElementById("agreement");
             

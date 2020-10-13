@@ -13,7 +13,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-12">
-          <button class="btn btn-primary" onclick="addData()">click me asshole</button>
+          <button class="btn btn-primary" onclick="addData()">click me mon ami</button>
           <div class="card">
             <div class="card-header border-0">
               <h3 class="card-title">Data Form</h3>
