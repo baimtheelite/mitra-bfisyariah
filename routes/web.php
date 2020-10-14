@@ -29,6 +29,10 @@ Route::get('/kontak', function () {
     return view('kontak');
 });
 
+Route::get('/success', function () {
+    return view('success');
+});
+
 // route halaman admin
 Route::prefix('admin-wp')->group(function () {
     Route::get('/', function () {
@@ -42,8 +46,4 @@ Route::prefix('admin-wp')->group(function () {
     Route::get('page', function () {
         return view('admin.page');
     });
-});
-
-Route::get('/upload', function () {
-    return view('upload');
 });

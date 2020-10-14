@@ -71,8 +71,6 @@
 <script src="{{ asset("administrator/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js") }} "></script>
 <script src="{{ asset("administrator/plugins/datatables-responsive/js/dataTables.responsive.min.js") }} "></script>
 <script src="{{ asset("administrator/plugins/datatables-responsive/js/responsive.bootstrap4.min.js") }} "></script>
-{{-- Owl Carousel --}}
-<script src="{{ asset("js/owl.carousel.min.js") }} "></script>
 
 
 <!-- The core Firebase JS SDK is always required and must be listed first -->

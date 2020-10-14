@@ -2,6 +2,16 @@
 
 @section('title', 'Kontak BFI Syariah')
 
+@section('style')
+    <style>
+        .center {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center; 
+    }
+    </style>
+@endsection
 
 @section('content')
 
@@ -24,7 +34,7 @@
     </div>
 </section>
 
-{{-- Contact --}}
+{{-- Contact FORM --}}
 <section>
     <div class="container">
         <div class="row mb-4">
@@ -67,6 +77,20 @@
     </div>
 </section>
 
+{{-- Whatsapp Button --}}
+<section style="background: #CDD2D5; padding: 100px">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="text-center">
+                    <a href="https://wa.me/6289655333987?text=Hi,%20saya%20ingin%20bekerjasama%20dengan%20BFI%20Syariah" class="btn btn-outline-success mr-4 mb-2 d-inline-block" style="width: 150px">Whatsapp</a>
+                    <a href="#" class="btn btn-success mr-4 mb-2 d-inline-block" style="width: 150px">Ajukan</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 {{-- Footbar --}}
 <x-layout.footbar />
 
@@ -78,20 +102,23 @@
         var contactFormRef = database.ref('contact_form');
 
         //get element
-        var contactForm     = document.getElementById("contact-form");
-        var nama_lengkap    = document.getElementById("nama_lengkap");
-        var noWhatsapp      = document.getElementById("no_whatsapp");
-        var pesan           = document.getElementById("pesan");
-        
         var kirimData   = document.getElementById("kirimData");
+        $("#contact-form").on("submit", function(){
+            event.preventDefault();
+            
+            kirimData.setAttribute("disabled", "disabled");
+            kirimData.innerHTML = "Mengirim...";
 
-        const insertData = () => {
-            contactFormRef.push({
-                nama_lengkap    : nama_lengkap.value,
-                noWhatsapp      : noWhatsapp.value,
-                pesan           : pesan.value,
-               
-            }, function(error){
+            // variabel kosong untuk menampung input form
+            var dataObject = {};
+            // menangkap (get) attribute name dan value dari form input
+            var data = $(this).serializeArray();
+            // membuat pasangan key dan value ke dalam 1 object
+            data.forEach((item, index) => {
+                eval("dataObject." + item['name'] + " = item['value']");
+            })
+            
+            contactFormRef.push(dataObject, function(error){
                 if(error){
                     console.log(error);
                 } else {
@@ -105,15 +132,6 @@
                     form.reset();
                 }
             })
-        }
-
-        contactForm.addEventListener("submit", function(event){
-            event.preventDefault();
-            
-            kirimData.setAttribute("disabled", "disabled");
-            kirimData.innerHTML = "Mengirim...";
-            
-            insertData();
         })
     </script>
 @endsection

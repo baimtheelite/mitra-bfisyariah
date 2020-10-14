@@ -6,13 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    {{-- Font Awesome --}}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">    {{-- Font Awesome --}}
     <link href="{{ asset("css/all.css")}}" rel="stylesheet"> <!--load all styles -->
     
     {{-- Google Font --}}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
     
+    {{-- Owl Carousel --}}
+    <link rel="stylesheet" href="{{ asset("css/owl.carousel.min.css") }}">
+    <link rel="stylesheet" href="{{ asset("css/owl.theme.default.min.css") }}">
+
     <style>
         body {
             font-family: "Ubuntu"
@@ -36,6 +39,9 @@
 
 {{-- Sweet Alert --}}
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+{{-- Owl Carousel --}}
+<script src="{{ asset("js/owl.carousel.min.js") }} "></script>
 
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-app.js"></script>
