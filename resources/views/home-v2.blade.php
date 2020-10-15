@@ -75,6 +75,14 @@
             position: relative;
             bottom: 50px;
         }
+        
+        @media only screen and (max-width: 600px) {
+            #form-section {
+                position: relative;
+                bottom: 20px;
+            }
+        }
+
 
         .form-konsumen {
             padding: 0;
@@ -106,6 +114,29 @@
         .form-row>.col, .form-row>[class*=col-] {
             padding: 12px;
         }
+
+        .banner {
+            width: 100%;
+            height: auto;
+            /* max-height: 400px */
+        }
+
+        .separator {
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+        .separator::before, .separator::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid rgba(0,0,0,.1);
+        }
+        .separator::before {
+            margin-right: .25em;
+        }
+        .separator::after {
+            margin-left: .25em;
+        }
     </style>
 @endsection
 
@@ -114,6 +145,10 @@
 @section('content')
 
 <x-layout.navbar />
+
+{{-- <section>
+    asdladmlsakdmla
+</section> --}}
 
 {{-- Carousel --}}
 <section>
@@ -125,13 +160,13 @@
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img class="d-block w-100" src="{{ asset("img/video-bg.jpg") }}" alt="First slide">
+            <img class="d-block w-100 banner" src="{{ asset("img/mekkah.jpg") }}" alt="First slide">
           </div>
           <div class="carousel-item">
-            <img class="d-block w-100" src="{{ asset("img/video-bg.jpg") }}" alt="Second slide">
+            <img class="d-block w-100 banner" src="{{ asset("img/mekkah.jpg") }}" alt="Second slide">
           </div>
           <div class="carousel-item">
-            <img class="d-block w-100" src="{{ asset("img/video-bg.jpg") }}" alt="Third slide">
+            <img class="d-block w-100 banner" src="{{ asset("img/mekkah.jpg") }}" alt="Third slide">
           </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -184,7 +219,8 @@
                                 </select>
                             </div>
                         </div>
-                        <hr>
+                        {{-- <hr> --}}
+                        <div class="separator">Jaminan</div>
                         <div class="form-row">
                             <div class="col-lg-6 col-md-6">
                                 <label for="merk_mobil">Merk Mobil</label>
@@ -311,8 +347,8 @@
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="text-center">
-                    <a href="https://wa.me/6289655333987?text=Hi,%20saya%20ingin%20bekerjasama%20dengan%20BFI%20Syariah" class="btn btn-outline-success mr-4 mb-3 d-inline-block" style="width: 150px">Whatsapp</a>
-                    <a href="#" class="btn btn-success mr-4 mb-2 d-inline-block" style="width: 150px">Ajukan</a>
+                    <a href="https://wa.me/6289655333987?text=Hi,%20saya%20ingin%20bekerjasama%20dengan%20BFI%20Syariah" class="btn btn-outline-success mr-4 mt-2 mb-3 d-inline-block" style="width: 150px">Whatsapp</a>
+                    <button id="ajukan-button" class="btn btn-success mr-4 mb-2 d-inline-block" style="width: 150px">Ajukan</button>
                 </div>
             </div>
         </div>
@@ -434,5 +470,14 @@
                 }
             );
         })
+    </script>
+
+    {{-- Scroll to form --}}
+    <script>
+        $("#ajukan-button").click(function() {
+            $('html, body').animate({
+                scrollTop: $("#form-section").offset().top
+            }, 2000);
+        });
     </script>
 @endsection

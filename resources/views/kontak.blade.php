@@ -35,7 +35,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 center text-white">
-                    <h1 class="display-4" style="word-wrap: break-word">#JauhLebihTenang</h1><br>
+                    <h1 class="mx-5" style="font-size: 3.5rem">#JauhLebihTenang</h1><br>
                     <p class="lead">Dengan pembiayaan tanpa denda dan tanpa provisi di BFI Finance Syariah menggunakan akad dan proses syariah yang transaparan.</p>
                     {{-- <p class="lead">
                         <button class="btn btn-primary">Lihat</button>

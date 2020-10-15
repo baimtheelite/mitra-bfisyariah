@@ -18,7 +18,8 @@
 
     <style>
         body {
-            font-family: "Ubuntu"
+            font-family: "Ubuntu";
+            padding-top: 72px;
         }
     </style>
 
