@@ -75,6 +75,11 @@
         //     <td>${child.val().tujuan_pembiayaan}</td>
         //   </tr>`        
         // listData.innerHTML = content;
+        // console.log(Object.keys(child.val()));
+        Object.keys(child.val()).forEach((key) => {
+          console.log(key);
+        });
+        
     });
   })
 

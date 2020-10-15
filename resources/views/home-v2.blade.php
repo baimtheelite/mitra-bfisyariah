@@ -71,31 +71,9 @@
             padding: 10px;
         }
 
-        #empty-section {
-            background-color: white;
-            display: none;
-        } 
-
-         #absolute {
-            margin-left: 15px;
-            margin-right: 15px;
-        }
-
-        /* kode di bawah akan dijalankan di ukuran dekstop */
-        @media only screen and (min-width: 992px) {
-            #absolute {
-                position: absolute;
-                margin-left: 10%;
-                top: 450px;
-                width: 80%;
-            }
-
-            #empty-section {
-                display: block;
-                min-height: 350px;
-                /* height: 100vh; */
-            }
-
+        #form-section {
+            position: relative;
+            bottom: 50px;
         }
 
         .form-konsumen {
@@ -128,7 +106,6 @@
         .form-row>.col, .form-row>[class*=col-] {
             padding: 12px;
         }
-
     </style>
 @endsection
 
@@ -139,7 +116,7 @@
 <x-layout.navbar />
 
 {{-- Carousel --}}
-{{-- <section>
+<section>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" >
         <ol class="carousel-indicators">
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -148,13 +125,13 @@
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img class="d-block w-100" src="{{ asset("img/autumn.jpg") }}" alt="First slide">
+            <img class="d-block w-100" src="{{ asset("img/video-bg.jpg") }}" alt="First slide">
           </div>
           <div class="carousel-item">
-            <img class="d-block w-100" src="{{ asset("img/autumn.jpg") }}" alt="Second slide">
+            <img class="d-block w-100" src="{{ asset("img/video-bg.jpg") }}" alt="Second slide">
           </div>
           <div class="carousel-item">
-            <img class="d-block w-100" src="{{ asset("img/autumn.jpg") }}" alt="Third slide">
+            <img class="d-block w-100" src="{{ asset("img/video-bg.jpg") }}" alt="Third slide">
           </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -166,7 +143,11 @@
           <span class="sr-only">Next</span>
         </a>
     </div>
-    <div id="absolute">
+</section>
+
+{{-- form Section --}}
+<section id="form-section" style="">
+    <div class="container">
         <div class="card shadow form-konsumen">
             <div class="card-header bg-primary p-1 m-0"></div>
             <div class="card-body">
@@ -194,7 +175,7 @@
                             </div>
                             <div class="col-lg-4 col-md-4">
                                 <label for="cabang_terdekat">Cabang Terdekat</label>
-                                <input type="text" class="form-control" name="cabang_terdekat" id="cabang_terdekat" required>
+                                {{-- <input type="text" class="form-control" name="cabang_terdekat" id="cabang_terdekat" required> --}}
                                 <select class="form-control" name="cabang_terdekat" id="cabang_terdekat">
                                     <option selected disabled value="">- Pilih Cabang -</option>
                                     @foreach ($branches as $branch)
@@ -226,84 +207,6 @@
             </div>
         </div>
     </div>
-</section> --}}
-
-
-  {{-- Hero --}}
-<section>
-    <div class="jumbotron jumbotron-fluid" style="background: rgba(0, 0, 0, 0.5); margin-bottom: 0;">
-        <div class="container">
-            <div class="hero text-center text-white">
-                <h1 class="display-4" style="word-wrap: break-word">#JauhLebihTenang</h1><br>
-                <p class="lead">Menggapai mimpi anda dengan pembiayaan tanpa denda dan tanpa provisi di BFI Finance Syariah. </p>
-            </div>
-        </div>
-        <div id="absolute">
-            <div class="card shadow form-konsumen">
-                <div class="card-header bg-primary p-1 m-0"></div>
-                <div class="card-body">
-                    <div class="container">
-                        <h2 class="text-center p-2">Formulir pengajuan</h2>
-                        <form id="form" action="" method="POST" autocomplete="off">
-                            <div class="form-row">
-                                <div class="col-lg-6 col-md-6">
-                                    <label for="nama_lengkap">Nama Lengkap</label>
-                                    <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" required>
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <label for="no_hp">Nomor Handphone</label>
-                                    <input type="text" class="form-control" name="no_hp" id="no_hp" minlength="7" maxlength="14" onkeypress="return isNumberKey(event)" required>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col-lg-4 col-md-4">
-                                    <label for="nilai_pembiayaan">Nilai Pembiayaan</label>
-                                    <input type="text" class="form-control" name="nilai_pembiayaan" id="nilai_pembiayaan" onkeypress="return isNumberKey(event)" required>
-                                </div>
-                                <div class="col-lg-4 col-md-4">
-                                    <label for="tujuan_pembiayaan">Tujuan Pembiayaan</label>
-                                    <input type="text" class="form-control" name="tujuan_pembiayaan" id="tujuan_pembiayaan" required>
-                                </div>
-                                <div class="col-lg-4 col-md-4">
-                                    <label for="cabang_terdekat">Cabang Terdekat</label>
-                                    <input type="text" class="form-control" name="cabang_terdekat" id="cabang_terdekat" required>
-                                    <select class="form-control" name="cabang_terdekat" id="cabang_terdekat">
-                                        <option selected disabled value="">- Pilih Cabang -</option>
-                                        @foreach ($branches as $branch)
-                                        <option value="{{ $branch }}">{{ $branch }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="form-row">
-                                <div class="col-lg-6 col-md-6">
-                                    <label for="merk_mobil">Merk Mobil</label>
-                                    <input type="text" class="form-control" name="merk_mobil" id="merk_mobil" required>
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <label for="tipe_mobil">Tipe Mobil</label>
-                                    <input type="text" class="form-control" name="tipe_mobil" id="tipe_mobil" required>
-                                </div>
-                            </div>
-                        
-                            <div class="form-check mt-4">
-                                <input type="checkbox" class="form-check-input" id="agreement" required onclick="checkedAgreement()">
-                                <label class="form-check-label" for="agreement"><small class="text-muted">Saya menyetujui untuk mengirimkan data diatas dan bersedia untuk dihubungi oleh PT BFI Finance Indonesia serta
-                                    berlangganan email promosi.</small></label>
-                            </div>
-                            <button id="kirimData" type="submit" class="btn btn-primary btn-lg btn-block mt-4" disabled>Kirim Data</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-{{-- empty Section --}}
-<section id="empty-section">
-
 </section>
 
 {{-- feature section --}}
@@ -322,14 +225,14 @@
                 dana tunai seperti konvensional" />
             </div> --}}
             <div id="partner-carousel" class="owl-carousel owl-theme">
-                <div class="item">
+                <div class="item d-flex">
                     <x-card-feature image="img/bfi.png" title="Tanpa Denda" text="Keringanan untuk anda dengan tidak ada biaya keterlambatan pembayaran angsuran" />
                 </div>
-                <div class="item">
+                <div class="item d-flex">
                     <x-card-feature image="img/bfi.png" title="Tanpa Provisi" text="Tidak dikenakan biaya provisi pada pembiayaan
                     di BFI Finance Syariah" />
                 </div>
-                <div class="item">
+                <div class="item d-flex">
                     <x-card-feature image="img/bfi.png" title="Akad Syariah" text="Transaksi murni jual-beli bukan menerima
                     dana tunai seperti konvensional" />
                 </div>
@@ -361,7 +264,7 @@
     </div>
 </section> --}}
 
-{{-- Paket Trip --}}
+{{-- Paket Cicilan --}}
 <section class="pt-4 pb-4">
     <div class="container">
         <h2 class="text-center p-4">Paket Cicilan Tanpa Denda</h2>
@@ -460,13 +363,28 @@
                 eval("dataObject." + item['name'] + " = item['value']");
             })
 
+            //get timestamp UTC
+            var d = new Date();
+            var date = d.getUTCDate();
+            var month = d.getUTCMonth();
+            var year = d.getUTCFullYear();
+            var hours = d.getUTCHours();
+            var minutes = d.getUTCMinutes();
+            var seconds = d.getUTCSeconds();
+
+            var fulldate = `${date}-${month}-${year} ${hours}:${minutes}:${seconds}`;
+
+            dataObject.tanggal_dikirim = fulldate;
             
             formRef.push(dataObject, function(error){
                 if(error){
                     console.log(error);
                 } else {
                     // Memunculkan alert success
-                    swal("Good job!", "Data telah terkirim!", "success");
+                    // swal("Good job!", "Data telah terkirim!", "success");
+
+                    //redirect ke halaman success
+                    window.location.href = "{{ url('/success') }}";
                     // Enable button kirim
                     kirimData.removeAttribute("disabled");
                     // mengubah kembali tulisan 'kirim data'

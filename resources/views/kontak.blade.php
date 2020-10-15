@@ -5,11 +5,23 @@
 @section('style')
     <style>
         .center {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center; 
-    }
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center; 
+        }
+
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            background: rgb(0, 0, 0);
+            background: rgba(0, 0, 0, 0.5); /* Black see-through */
+            color: #f1f1f1;
+            width: 100%;
+            opacity:1;
+            color: white;
+            padding: 10px;
+        }
     </style>
 @endsection
 
@@ -86,6 +98,47 @@
                     <a href="https://wa.me/6289655333987?text=Hi,%20saya%20ingin%20bekerjasama%20dengan%20BFI%20Syariah" class="btn btn-outline-success mr-4 mb-2 d-inline-block" style="width: 150px">Whatsapp</a>
                     <a href="#" class="btn btn-success mr-4 mb-2 d-inline-block" style="width: 150px">Ajukan</a>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{-- Paket Cicilan --}}
+<section class="pt-4 pb-4">
+    <div class="container">
+        <h2 class="text-center p-4">Paket Cicilan Tanpa Denda</h2>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 mr-0 card p-0">
+                <img class="card-img-top p-0 m-0" src="{{ asset("img/autumn.jpg") }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Pattaya Island Tour</h5>
+                        <p class="card-text">Wujudkan impian ke tanah suci bersama My Ihram. Kami bekerjasama dengan AliaGo Tour and Travel mengadakan perjalanan umroh selama 9 hari.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+            </div>
+            <div class="col-lg-8 col-md-8 col-12" style="padding-left: 20px;">
+                {{-- <div class="flex-container"> --}}
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-6" style="padding-left: 0px; padding-right: 0px">
+                            <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-6" style="padding-left: 0px; padding-right: 0px">
+                            <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-6" style="padding-left: 0px; padding-right: 0px">
+                            <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-6" style="padding-left: 0px; padding-right: 0px">
+                            <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-6" style="padding-left: 0px; padding-right: 0px">
+                            <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-6" style="padding-left: 0px; padding-right: 0px">
+                            <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
+                        </div>
+                    </div>
+                    {{-- </div> --}}
             </div>
         </div>
     </div>
