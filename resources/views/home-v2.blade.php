@@ -226,7 +226,7 @@
             </div> --}}
             <div id="partner-carousel" class="owl-carousel owl-theme">
                 <div class="item d-flex">
-                    <x-card-feature image="img/bfi.png" title="Tanpa Denda" text="Keringanan untuk anda dengan tidak ada biaya keterlambatan pembayaran angsuran" />
+                    <x-card-feature image="img/bfi.png" title="Tanpa Denda" text="Tidak ada biaya keterlambatan pembayaran angsuran" />
                 </div>
                 <div class="item d-flex">
                     <x-card-feature image="img/bfi.png" title="Tanpa Provisi" text="Tidak dikenakan biaya provisi pada pembiayaan
