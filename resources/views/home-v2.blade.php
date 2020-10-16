@@ -90,6 +90,7 @@
             /* position: absolute; */
             width: 100%;
             z-index: 999;
+            border: none;
         }
 
         .form-konsumen, .form-konsumen .card-header  {

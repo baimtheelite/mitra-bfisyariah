@@ -63,18 +63,22 @@
     var listData = document.getElementById("list-data");
     var content = [];
     var formRef = firebase.database().ref('form/');
+    
+    
     formRef.on('value', function(snapshot) {
-      const distinct = (value, index, self) => {
-        return self.indexOf(value) === index;
-      }
 
+    const distinct = (value, index, self) => {
+      return self.indexOf(value) === index;
+    }
+
+      snapshot.forEach((child) => {
       const keys = Object.keys(child.val());
       const distinctKeys = keys.filter(distinct);
 
-      snapshot.forEach((child) => {
-        distinctKeys.forEach((key) => {
-          console.log(key);
-        });
+        console.log(distinctKeys);
+        // distinctKeys.forEach((key) => {
+        //   console.log(key);
+        // });
     });
   })
 
