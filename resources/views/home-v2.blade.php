@@ -1,50 +1,50 @@
 @php
     $branches = [
-        "Balikpapan Syariah",
-        "Bandung Syariah",
-        "Banjarmasin Syariah",
-        "Batam Syariah",
-        "Bekasi Syariah",
-        "Bogor Syariah",
-        "BSD Syariah",
-        "BukitTinggi Syariah",
-        "Cawang Syariah",
-        "Cirebon Syariah",
-        "Depok Syariah",
-        "Gorontalo Syariah",
-        "Gresik Syariah",
-        "Jakarta Selatan Syariah",
-        "Jakarta Utara Syariah",
-        "Jambi Syariah",
-        "Karawang Syariah",
-        "Kediri Syariah",
-        "Kendari Syariah",
-        "Kudus Syariah",
-        "Lampung Syariah",
-        "Makassar Syariah",
-        "Malang Syariah",
-        "Mataram Syariah",
-        "Medan Syariah",
-        "Meruya Syariah",
-        "Mojokerto Syariah",
-        "Padang Syariah",
-        "Palangkaraya Syariah",
-        "Palembang Syariah",
-        "Pekanbaru Syariah",
-        "Pontianak Syariah",
-        "Purwokerto Syariah",
-        "Samarinda Syariah",
-        "Semarang Syariah",
-        "Sidoarjo Syariah",
-        "Solo Syariah",
-        "Sorong Syariah",
-        "Sukabumi Syariah",
-        "Sunter Syariah",
-        "Surabaya Syariah",
-        "Tangerang Syariah",
-        "Tasikmalaya Syariah",
-        "Ternate Syariah",
-        "Yogyakarta Syariah"
+        "Balikpapan",
+        "Bandung",
+        "Banjarmasin",
+        "Batam",
+        "Bekasi",
+        "Bogor",
+        "BSD",
+        "BukitTinggi",
+        "Cawang",
+        "Cirebon",
+        "Depok",
+        "Gorontalo",
+        "Gresik",
+        "Jakarta Selatan",
+        "Jakarta Utara",
+        "Jambi",
+        "Karawang",
+        "Kediri",
+        "Kendari",
+        "Kudus",
+        "Lampung",
+        "Makassar",
+        "Malang",
+        "Mataram",
+        "Medan",
+        "Meruya",
+        "Mojokerto",
+        "Padang",
+        "Palangkaraya",
+        "Palembang",
+        "Pekanbaru",
+        "Pontianak",
+        "Purwokerto",
+        "Samarinda",
+        "Semarang",
+        "Sidoarjo",
+        "Solo",
+        "Sorong",
+        "Sukabumi",
+        "Sunter",
+        "Surabaya",
+        "Tangerang",
+        "Tasikmalaya",
+        "Ternate",
+        "Yogyakarta"
     ];
 @endphp
 
@@ -101,11 +101,12 @@
             padding: 0px 0px 128px 168px;
         }
 
-        .hero {
-            min-height: 500px;
-            padding-top: 50px;
-            padding-left: 20%;
-            padding-right: 20%;
+        label{
+            font-size: 12px;
+        }
+
+        option {
+            font-size: 12px;
         }
 
         .secondary {
@@ -116,9 +117,9 @@
             padding: 12px;
         }
 
-        .banner {
-            width: 100%;
-            height: auto;
+        .banner {   
+            max-width: 960px;
+            max-height: 500px;
             /* max-height: 400px */
         }
 
@@ -126,6 +127,9 @@
             display: flex;
             align-items: center;
             text-align: center;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            color: #CDD2D5;
         }
         .separator::before, .separator::after {
             content: '';
@@ -134,6 +138,7 @@
         }
         .separator::before {
             margin-right: .25em;
+        
         }
         .separator::after {
             margin-left: .25em;
@@ -141,7 +146,7 @@
     </style>
 @endsection
 
-@section('title', 'Home BFI Syariah')
+@section('title', 'BFI Finance - #JauhLebihTenang')
 
 @section('content')
 
@@ -188,7 +193,7 @@
             <div class="card-header bg-primary p-1 m-0"></div>
             <div class="card-body">
                 <div class="container">
-                    <h2 class="text-center p-2">Formulir pengajuan</h2>
+                    <h2 class="text-center p-2">Mulai Pengajuan</h2>
                     <form id="form" action="" method="POST" autocomplete="off">
                         <div class="form-row">
                             <div class="col-lg-6 col-md-6">
@@ -196,7 +201,7 @@
                                 <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" required>
                             </div>
                             <div class="col-lg-6 col-md-6">
-                                <label for="no_hp">Nomor Handphone</label>
+                                <label for="no_hp">Nomor Whatsapp</label>
                                 <input type="text" class="form-control" name="no_hp" id="no_hp" minlength="7" maxlength="14" onkeypress="return isNumberKey(event)" required>
                             </div>
                         </div>
@@ -235,8 +240,8 @@
                     
                         <div class="form-check mt-4">
                             <input type="checkbox" class="form-check-input" id="agreement" required onclick="checkedAgreement()">
-                            <label class="form-check-label" for="agreement"><small class="text-muted">Saya menyetujui untuk mengirimkan data diatas dan bersedia untuk dihubungi oleh PT BFI Finance Indonesia serta
-                                berlangganan email promosi.</small></label>
+                            <label class="form-check-label" for="agreement">Saya menyetujui untuk mengirimkan data diatas dan bersedia untuk dihubungi oleh PT BFI Finance Indonesia serta
+                                berlangganan email promosi.</label>
                         </div>
                         <button id="kirimData" type="submit" class="btn btn-primary btn-lg btn-block mt-4" disabled>Kirim Data</button>
                     </form>
@@ -250,28 +255,17 @@
 <section class="secondary" style="padding: 5%">
     <div class="container">
         <div class="row">
-            {{-- <div class="col-lg-4 col-md-4">
-                <x-card-feature image="img/bfi.png" title="Tanpa Denda" text="Keringanan untuk anda dengan tidak ada biaya keterlambatan pembayaran angsuran" />
-            </div>
-            <div class="col-lg-4 col-md-4">
-                <x-card-feature image="img/bfi.png" title="Tanpa Provisi" text="Tidak dikenakan biaya provisi pada pembiayaan
-                di BFI Finance Syariah" />
-            </div>
-            <div class="col-lg-4 col-md-4">                
-                <x-card-feature image="img/bfi.png" title="Akad Syariah" text="Transaksi murni jual-beli bukan menerima
-                dana tunai seperti konvensional" />
-            </div> --}}
             <div id="partner-carousel" class="owl-carousel owl-theme">
                 <div class="item d-flex">
                     <x-card-feature image="img/bfi.png" title="Tanpa Denda" text="Tidak ada biaya keterlambatan pembayaran angsuran" />
                 </div>
                 <div class="item d-flex">
                     <x-card-feature image="img/bfi.png" title="Tanpa Provisi" text="Tidak dikenakan biaya provisi pada pembiayaan
-                    di BFI Finance Syariah" />
+                    di BFI Finance" />
                 </div>
                 <div class="item d-flex">
-                    <x-card-feature image="img/bfi.png" title="Akad Syariah" text="Transaksi murni jual-beli bukan menerima
-                    dana tunai seperti konvensional" />
+                    <x-card-feature image="img/bfi.png" title="Akad" text="Transaksi murni jual-beli bukan menerima
+                    dana tunai" />
                 </div>
             </div>
         </div>
@@ -284,11 +278,11 @@
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="logo-container">
-                    <p class="mb-0">Travel Partner Kami: </p>
-                    <x-partner image="aliyah.png" />
+                    <p class="mb-0">Merchant Pilihan Kami: </p>
+                    <x-partner image.png" />
                     <x-partner image="awmtour.png" />
                     <x-partner image="buana.png" />
-                    <x-partner image="khalifah.png" />
+                    <x-partner image=".png" />
                 </div>
             </div>
         </div>
@@ -310,7 +304,7 @@
                 <img class="card-img-top p-0 m-0" src="{{ asset("img/autumn.jpg") }}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Pattaya Island Tour</h5>
-                        <p class="card-text">Wujudkan impian ke tanah suci bersama My Ihram. Kami bekerjasama dengan AliaGo Tour and Travel mengadakan perjalanan umroh selama 9 hari.</p>
+                        <p class="card-text">Wujudkan impian  suci bersama My Ihram. Kami bekerjasama dengan AliaGo Tour and Travel mengadakan perjalanan umroh selama 9 hari.</p>
                         <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
             </div>
@@ -348,7 +342,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="text-center">
-                    <a href="https://wa.me/6289655333987?text=Hi,%20saya%20ingin%20bekerjasama%20dengan%20BFI%20Syariah" class="btn btn-outline-success mr-4 mt-2 mb-3 d-inline-block" style="width: 150px">Whatsapp</a>
+                    <a href="https://wa.me/6289655333987?text=Hi,%20saya%20ingin%20bekerjasama%20dengan%20BFI%2" class="btn btn-outline-success mr-4 mt-2 mb-3 d-inline-block" style="width: 150px">Whatsapp</a>
                     <button id="ajukan-button" class="btn btn-success mr-4 mb-2 d-inline-block" style="width: 150px">Ajukan</button>
                 </div>
             </div>
@@ -386,7 +380,7 @@
 
             //membuat tombol kirim tidak bisa dipencet
             kirimData.setAttribute("disabled", "disabled");
-            //mengubah teks tombol kirim menjadi 'mengirim...'
+            // teks tombol kirim menjadi 'mengirim...'
             kirimData.innerHTML = "Mengirim...";
             // kirimData.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             //                         <span class="sr-only">Loading...</span>`;
@@ -418,13 +412,13 @@
                     console.log(error);
                 } else {
                     // Memunculkan alert success
-                    // swal("Good job!", "Data telah terkirim!", "success");
+                    // swal("Good job!", "Da terkirim!", "success");
 
                     //redirect ke halaman success
                     window.location.href = "{{ url('/success') }}";
                     // Enable button kirim
                     kirimData.removeAttribute("disabled");
-                    // mengubah kembali tulisan 'kirim data'
+                    //  kembali tulisan 'kirim data'
                     kirimData.innerHTML = "Kirim Data";
                     // mengosongkan kembali form data
                     form.reset();
