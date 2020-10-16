@@ -64,22 +64,17 @@
     var content = [];
     var formRef = firebase.database().ref('form/');
     formRef.on('value', function(snapshot) {
-      // updateStarCount(postElement, snapshot.val());
+      const distinct = (value, index, self) => {
+        return self.indexOf(value) === index;
+      }
+
+      const keys = Object.keys(child.val());
+      const distinctKeys = keys.filter(distinct);
+
       snapshot.forEach((child) => {
-        // content += `<tr>
-        //     <td>${child.val().nama_lengkap}</td>
-        //     <td>${child.val().email}</td>
-        //     <td>${child.val().no_hp}</td>
-        //     <td>${child.val().cabang_terdekat}</td>
-        //     <td>${child.val().jaminan_mobil}</td>
-        //     <td>${child.val().tujuan_pembiayaan}</td>
-        //   </tr>`        
-        // listData.innerHTML = content;
-        // console.log(Object.keys(child.val()));
-        Object.keys(child.val()).forEach((key) => {
+        distinctKeys.forEach((key) => {
           console.log(key);
         });
-        
     });
   })
 
