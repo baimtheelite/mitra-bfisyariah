@@ -21,13 +21,8 @@
             <div class="card-body table-responsive p-0">
               <table id="data-form" class="table table-bordered table-striped">
                 <thead>
-                <tr>
-                  <th>Nama Lengkap</th>
-                  <th>Alamat Email</th>
-                  <th>Nomor Handphone</th>
-                  <th>Cabang Terdekat</th>
-                  <th>Tipe Mobil yang dijaminkan</th>
-                  <th>Tujuan Pembiayaan</th>
+                <tr id="column-data">
+                  {{--  --}}
                 </tr>
                 </thead>
                 <tbody id="list-data">
@@ -45,20 +40,7 @@
 @section('scripts')
 <script>
 
-  const addData = () => {
-    var dataTable = $("#data-form").dataTable();
-    //       child.val().no_hp,
-    // content = [
-    //       child.val().nama_lengkap,
-    //       child.val().email,
-    //       child.val().cabang_terdekat,
-    //       child.val().jaminan_mobil,
-    //       child.val().tujuan_pembiayaan
-    //       ];
-    dataTable.rows.add(["Rhoma Fucking Irama", "roma@gmail.com", "08961881922", "Camry", "Buat Kuliah"]).draw();
-    console.log("clicked");
-  }
-
+    // var dataTable = $("#data-form").dataTable();
     //get element
     var listData = document.getElementById("list-data");
     var content = [];
@@ -71,15 +53,25 @@
       return self.indexOf(value) === index;
     }
 
-      snapshot.forEach((child) => {
-      const keys = Object.keys(child.val());
-      const distinctKeys = keys.filter(distinct);
+    const arr = [];
 
-        console.log(distinctKeys);
-        // distinctKeys.forEach((key) => {
-        //   console.log(key);
-        // });
+    snapshot.forEach((child) => {
+      const keys = Object.keys(child.val());
+      keys.forEach((key) => {
+        arr.push(key)
+      });
+
     });
+
+    const distinctKeys = arr.filter(distinct);
+    console.log(distinctKeys);
+
+    var column = '';
+    distinctKeys.forEach((key) => {
+      column += `<td>${key}</td>`;
+    })
+    $("#column-data").html(column);
+    console.log(column);
   })
 
   

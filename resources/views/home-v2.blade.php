@@ -1,50 +1,50 @@
 @php
     $branches = [
-        "Balikpapan",
-        "Bandung",
-        "Banjarmasin",
-        "Batam",
-        "Bekasi",
-        "Bogor",
-        "BSD",
-        "BukitTinggi",
-        "Cawang",
-        "Cirebon",
-        "Depok",
-        "Gorontalo",
-        "Gresik",
-        "Jakarta Selatan",
-        "Jakarta Utara",
-        "Jambi",
-        "Karawang",
-        "Kediri",
-        "Kendari",
-        "Kudus",
-        "Lampung",
-        "Makassar",
-        "Malang",
-        "Mataram",
-        "Medan",
-        "Meruya",
-        "Mojokerto",
-        "Padang",
-        "Palangkaraya",
-        "Palembang",
-        "Pekanbaru",
-        "Pontianak",
-        "Purwokerto",
-        "Samarinda",
-        "Semarang",
-        "Sidoarjo",
-        "Solo",
-        "Sorong",
-        "Sukabumi",
-        "Sunter",
-        "Surabaya",
-        "Tangerang",
-        "Tasikmalaya",
-        "Ternate",
-        "Yogyakarta"
+        "Balikpapan Syariah",
+        "Bandung Syariah",
+        "Banjarmasin Syariah",
+        "Batam Syariah",
+        "Bekasi Syariah",
+        "Bogor Syariah",
+        "BSD Syariah",
+        "BukitTinggi Syariah",
+        "Cawang Syariah",
+        "Cirebon Syariah",
+        "Depok Syariah",
+        "Gorontalo Syariah",
+        "Gresik Syariah",
+        "Jakarta Selatan Syariah",
+        "Jakarta Utara Syariah",
+        "Jambi Syariah",
+        "Karawang Syariah",
+        "Kediri Syariah",
+        "Kendari Syariah",
+        "Kudus Syariah",
+        "Lampung Syariah",
+        "Makassar Syariah",
+        "Malang Syariah",
+        "Mataram Syariah",
+        "Medan Syariah",
+        "Meruya Syariah",
+        "Mojokerto Syariah",
+        "Padang Syariah",
+        "Palangkaraya Syariah",
+        "Palembang Syariah",
+        "Pekanbaru Syariah",
+        "Pontianak Syariah",
+        "Purwokerto Syariah",
+        "Samarinda Syariah",
+        "Semarang Syariah",
+        "Sidoarjo Syariah",
+        "Solo Syariah",
+        "Sorong Syariah",
+        "Sukabumi Syariah",
+        "Sunter Syariah",
+        "Surabaya Syariah",
+        "Tangerang Syariah",
+        "Tasikmalaya Syariah",
+        "Ternate Syariah",
+        "Yogyakarta Syariah"
     ];
 @endphp
 
@@ -77,6 +77,17 @@
         }
         
         @media only screen and (max-width: 600px) {
+            .paket-trip-small {
+                margin-left: .5rem;
+                margin-right: .5rem;
+            }
+            
+            .paket-trip-big {
+                margin-left: 1.5rem;
+                margin-right: 1.5rem;
+                margin-bottom: .5rem; 
+            }
+
             #form-section {
                 position: relative;
                 bottom: 20px;
@@ -101,14 +112,6 @@
             padding: 0px 0px 128px 168px;
         }
 
-        label{
-            font-size: 12px;
-        }
-
-        option {
-            font-size: 12px;
-        }
-
         .secondary {
             background: #F1F3F2;
         }
@@ -117,9 +120,9 @@
             padding: 12px;
         }
 
-        .banner {   
-            max-width: 960px;
-            max-height: 500px;
+        .banner {
+            width: 100%;
+            height: auto;
             /* max-height: 400px */
         }
 
@@ -127,9 +130,6 @@
             display: flex;
             align-items: center;
             text-align: center;
-            margin-top: 15px;
-            margin-bottom: 15px;
-            color: #CDD2D5;
         }
         .separator::before, .separator::after {
             content: '';
@@ -138,7 +138,6 @@
         }
         .separator::before {
             margin-right: .25em;
-        
         }
         .separator::after {
             margin-left: .25em;
@@ -146,7 +145,7 @@
     </style>
 @endsection
 
-@section('title', 'BFI Finance - #JauhLebihTenang')
+@section('title', 'Home BFI Syariah')
 
 @section('content')
 
@@ -158,32 +157,34 @@
 
 {{-- Carousel --}}
 <section>
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" >
-        <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img class="d-block w-100 banner" src="{{ asset("img/mekkah.jpg") }}" alt="First slide">
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100 banner" src="{{ asset("img/mekkah.jpg") }}" alt="Second slide">
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100 banner" src="{{ asset("img/mekkah.jpg") }}" alt="Third slide">
-          </div>
+    {{-- <div class="container"> --}}
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" >
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img class="d-block w-100 banner" src="{{ asset("img/768.jpg") }}" alt="First slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100 banner" src="{{ asset("img/768.jpg") }}" alt="Second slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100 banner" src="{{ asset("img/768.jpg") }}" alt="Third slide">
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-    </div>
+    {{-- </div> --}}
 </section>
 
 {{-- form Section --}}
@@ -193,7 +194,7 @@
             <div class="card-header bg-primary p-1 m-0"></div>
             <div class="card-body">
                 <div class="container">
-                    <h2 class="text-center p-2">Mulai Pengajuan</h2>
+                    <h2 class="text-center p-2">Formulir pengajuan</h2>
                     <form id="form" action="" method="POST" autocomplete="off">
                         <div class="form-row">
                             <div class="col-lg-6 col-md-6">
@@ -201,7 +202,7 @@
                                 <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" required>
                             </div>
                             <div class="col-lg-6 col-md-6">
-                                <label for="no_hp">Nomor Whatsapp</label>
+                                <label for="no_hp">Nomor Handphone</label>
                                 <input type="text" class="form-control" name="no_hp" id="no_hp" minlength="7" maxlength="14" onkeypress="return isNumberKey(event)" required>
                             </div>
                         </div>
@@ -240,8 +241,8 @@
                     
                         <div class="form-check mt-4">
                             <input type="checkbox" class="form-check-input" id="agreement" required onclick="checkedAgreement()">
-                            <label class="form-check-label" for="agreement">Saya menyetujui untuk mengirimkan data diatas dan bersedia untuk dihubungi oleh PT BFI Finance Indonesia serta
-                                berlangganan email promosi.</label>
+                            <label class="form-check-label" for="agreement"><small class="text-muted">Saya menyetujui untuk mengirimkan data diatas dan bersedia untuk dihubungi oleh PT BFI Finance Indonesia serta
+                                berlangganan email promosi.</small></label>
                         </div>
                         <button id="kirimData" type="submit" class="btn btn-primary btn-lg btn-block mt-4" disabled>Kirim Data</button>
                     </form>
@@ -255,17 +256,28 @@
 <section class="secondary" style="padding: 5%">
     <div class="container">
         <div class="row">
+            {{-- <div class="col-lg-4 col-md-4">
+                <x-card-feature image="img/bfi.png" title="Tanpa Denda" text="Keringanan untuk anda dengan tidak ada biaya keterlambatan pembayaran angsuran" />
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <x-card-feature image="img/bfi.png" title="Tanpa Provisi" text="Tidak dikenakan biaya provisi pada pembiayaan
+                di BFI Finance Syariah" />
+            </div>
+            <div class="col-lg-4 col-md-4">                
+                <x-card-feature image="img/bfi.png" title="Akad Syariah" text="Transaksi murni jual-beli bukan menerima
+                dana tunai seperti konvensional" />
+            </div> --}}
             <div id="partner-carousel" class="owl-carousel owl-theme">
                 <div class="item d-flex">
                     <x-card-feature image="img/bfi.png" title="Tanpa Denda" text="Tidak ada biaya keterlambatan pembayaran angsuran" />
                 </div>
                 <div class="item d-flex">
                     <x-card-feature image="img/bfi.png" title="Tanpa Provisi" text="Tidak dikenakan biaya provisi pada pembiayaan
-                    di BFI Finance" />
+                    di BFI Finance Syariah" />
                 </div>
                 <div class="item d-flex">
-                    <x-card-feature image="img/bfi.png" title="Akad" text="Transaksi murni jual-beli bukan menerima
-                    dana tunai" />
+                    <x-card-feature image="img/bfi.png" title="Akad Syariah" text="Transaksi murni jual-beli bukan menerima
+                    dana tunai seperti konvensional" />
                 </div>
             </div>
         </div>
@@ -278,11 +290,11 @@
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="logo-container">
-                    <p class="mb-0">Merchant Pilihan Kami: </p>
-                    <x-partner image.png" />
+                    <p class="mb-0">Travel Partner Kami: </p>
+                    <x-partner image="aliyah.png" />
                     <x-partner image="awmtour.png" />
                     <x-partner image="buana.png" />
-                    <x-partner image=".png" />
+                    <x-partner image="khalifah.png" />
                 </div>
             </div>
         </div>
@@ -300,33 +312,33 @@
     <div class="container">
         <h2 class="text-center p-4">Paket Cicilan Tanpa Denda</h2>
         <div class="row">
-            <div class="col-lg-4 col-md-4 mr-0 card p-0">
+            <div class="col-lg-4 col-md-4 p-0 paket-trip-big card shadow">
                 <img class="card-img-top p-0 m-0" src="{{ asset("img/autumn.jpg") }}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Pattaya Island Tour</h5>
-                        <p class="card-text">Wujudkan impian  suci bersama My Ihram. Kami bekerjasama dengan AliaGo Tour and Travel mengadakan perjalanan umroh selama 9 hari.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
+                <div class="card-body">
+                    <h5 class="card-title">Pattaya Island Tour</h5>
+                    <p class="card-text">Wujudkan impian ke tanah suci bersama My Ihram. Kami bekerjasama dengan AliaGo Tour and Travel mengadakan perjalanan umroh selama 9 hari.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
             </div>
             <div class="col-lg-8 col-md-8 col-12" style="padding-left: 20px;">
                 {{-- <div class="flex-container"> --}}
-                    <div class="row">
-                        <div class="col-lg-4 col-md-4 col-6" style="padding-left: 0px; padding-right: 0px">
+                    <div class="row paket-trip-small">
+                        <div class="col-lg-4 col-md-4 col-6 px-0">
                             <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
                         </div>
-                        <div class="col-lg-4 col-md-4 col-6" style="padding-left: 0px; padding-right: 0px">
+                        <div class="col-lg-4 col-md-4 col-6 px-0">
                             <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
                         </div>
-                        <div class="col-lg-4 col-md-4 col-6" style="padding-left: 0px; padding-right: 0px">
+                        <div class="col-lg-4 col-md-4 col-6 px-0">
                             <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
                         </div>
-                        <div class="col-lg-4 col-md-4 col-6" style="padding-left: 0px; padding-right: 0px">
+                        <div class="col-lg-4 col-md-4 col-6 px-0">
                             <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
                         </div>
-                        <div class="col-lg-4 col-md-4 col-6" style="padding-left: 0px; padding-right: 0px">
+                        <div class="col-lg-4 col-md-4 col-6 px-0">
                             <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
                         </div>
-                        <div class="col-lg-4 col-md-4 col-6" style="padding-left: 0px; padding-right: 0px">
+                        <div class="col-lg-4 col-md-4 col-6 px-0">
                             <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
                         </div>
                     </div>
@@ -342,7 +354,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="text-center">
-                    <a href="https://wa.me/6289655333987?text=Hi,%20saya%20ingin%20bekerjasama%20dengan%20BFI%2" class="btn btn-outline-success mr-4 mt-2 mb-3 d-inline-block" style="width: 150px">Whatsapp</a>
+                    <a href="https://wa.me/6289655333987?text=Hi,%20saya%20ingin%20bekerjasama%20dengan%20BFI%20Syariah" class="btn btn-outline-success mr-4 mt-2 mb-3 d-inline-block" style="width: 150px">Whatsapp</a>
                     <button id="ajukan-button" class="btn btn-success mr-4 mb-2 d-inline-block" style="width: 150px">Ajukan</button>
                 </div>
             </div>
@@ -380,7 +392,7 @@
 
             //membuat tombol kirim tidak bisa dipencet
             kirimData.setAttribute("disabled", "disabled");
-            // teks tombol kirim menjadi 'mengirim...'
+            //mengubah teks tombol kirim menjadi 'mengirim...'
             kirimData.innerHTML = "Mengirim...";
             // kirimData.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             //                         <span class="sr-only">Loading...</span>`;
@@ -412,13 +424,13 @@
                     console.log(error);
                 } else {
                     // Memunculkan alert success
-                    // swal("Good job!", "Da terkirim!", "success");
+                    // swal("Good job!", "Data telah terkirim!", "success");
 
                     //redirect ke halaman success
                     window.location.href = "{{ url('/success') }}";
                     // Enable button kirim
                     kirimData.removeAttribute("disabled");
-                    //  kembali tulisan 'kirim data'
+                    // mengubah kembali tulisan 'kirim data'
                     kirimData.innerHTML = "Kirim Data";
                     // mengosongkan kembali form data
                     form.reset();
