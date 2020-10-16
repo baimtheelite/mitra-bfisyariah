@@ -77,6 +77,17 @@
         }
         
         @media only screen and (max-width: 600px) {
+            .paket-trip-small {
+                margin-left: .5rem;
+                margin-right: .5rem;
+            }
+            
+            .paket-trip-big {
+                margin-left: 1.5rem;
+                margin-right: 1.5rem;
+                margin-bottom: .5rem; 
+            }
+
             #form-section {
                 position: relative;
                 bottom: 20px;
@@ -99,13 +110,6 @@
 
         .logo-container {
             padding: 0px 0px 128px 168px;
-        }
-
-        .hero {
-            min-height: 500px;
-            padding-top: 50px;
-            padding-left: 20%;
-            padding-right: 20%;
         }
 
         .secondary {
@@ -153,32 +157,34 @@
 
 {{-- Carousel --}}
 <section>
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" >
-        <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img class="d-block w-100 banner" src="{{ asset("img/mekkah.jpg") }}" alt="First slide">
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100 banner" src="{{ asset("img/mekkah.jpg") }}" alt="Second slide">
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100 banner" src="{{ asset("img/mekkah.jpg") }}" alt="Third slide">
-          </div>
+    {{-- <div class="container"> --}}
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" >
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img class="d-block w-100 banner" src="{{ asset("img/768.jpg") }}" alt="First slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100 banner" src="{{ asset("img/768.jpg") }}" alt="Second slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100 banner" src="{{ asset("img/768.jpg") }}" alt="Third slide">
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-    </div>
+    {{-- </div> --}}
 </section>
 
 {{-- form Section --}}
@@ -306,33 +312,33 @@
     <div class="container">
         <h2 class="text-center p-4">Paket Cicilan Tanpa Denda</h2>
         <div class="row">
-            <div class="col-lg-4 col-md-4 mr-0 card p-0">
+            <div class="col-lg-4 col-md-4 p-0 paket-trip-big card shadow">
                 <img class="card-img-top p-0 m-0" src="{{ asset("img/autumn.jpg") }}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Pattaya Island Tour</h5>
-                        <p class="card-text">Wujudkan impian ke tanah suci bersama My Ihram. Kami bekerjasama dengan AliaGo Tour and Travel mengadakan perjalanan umroh selama 9 hari.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
+                <div class="card-body">
+                    <h5 class="card-title">Pattaya Island Tour</h5>
+                    <p class="card-text">Wujudkan impian ke tanah suci bersama My Ihram. Kami bekerjasama dengan AliaGo Tour and Travel mengadakan perjalanan umroh selama 9 hari.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
             </div>
             <div class="col-lg-8 col-md-8 col-12" style="padding-left: 20px;">
                 {{-- <div class="flex-container"> --}}
-                    <div class="row">
-                        <div class="col-lg-4 col-md-4 col-6" style="padding-left: 0px; padding-right: 0px">
+                    <div class="row paket-trip-small">
+                        <div class="col-lg-4 col-md-4 col-6 px-0">
                             <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
                         </div>
-                        <div class="col-lg-4 col-md-4 col-6" style="padding-left: 0px; padding-right: 0px">
+                        <div class="col-lg-4 col-md-4 col-6 px-0">
                             <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
                         </div>
-                        <div class="col-lg-4 col-md-4 col-6" style="padding-left: 0px; padding-right: 0px">
+                        <div class="col-lg-4 col-md-4 col-6 px-0">
                             <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
                         </div>
-                        <div class="col-lg-4 col-md-4 col-6" style="padding-left: 0px; padding-right: 0px">
+                        <div class="col-lg-4 col-md-4 col-6 px-0">
                             <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
                         </div>
-                        <div class="col-lg-4 col-md-4 col-6" style="padding-left: 0px; padding-right: 0px">
+                        <div class="col-lg-4 col-md-4 col-6 px-0">
                             <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
                         </div>
-                        <div class="col-lg-4 col-md-4 col-6" style="padding-left: 0px; padding-right: 0px">
+                        <div class="col-lg-4 col-md-4 col-6 px-0">
                             <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
                         </div>
                     </div>
