@@ -163,10 +163,6 @@
 
 <x-layout.navbar />
 
-{{-- <section>
-    asdladmlsakdmla
-</section> --}}
-
 {{-- Carousel --}}
 <section>
     {{-- <div class="container"> --}}
@@ -175,15 +171,7 @@
                 {{--  --}}
             </ol>
             <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img class="d-block w-100 banner" src="{{ asset("img/768.jpg") }}" alt="First slide">
-              </div>
-              <div class="carousel-item">
-                <img class="d-block w-100 banner" src="{{ asset("img/768.jpg") }}" alt="Second slide">
-              </div>
-              <div class="carousel-item">
-                <img class="d-block w-100 banner" src="{{ asset("img/768.jpg") }}" alt="Third slide">
-              </div>
+                {{--  --}}
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -393,8 +381,6 @@
             kirimData.setAttribute("disabled", "disabled");
             // teks tombol kirim menjadi 'mengirim...'
             kirimData.innerHTML = "Mengirim...";
-            // kirimData.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-            //                         <span class="sr-only">Loading...</span>`;
 
             // variabel kosong untuk menampung input form
             var dataObject = {};
@@ -422,9 +408,6 @@
                 if(error){
                     console.log(error);
                 } else {
-                    // Memunculkan alert success
-                    // swal("Good job!", "Da terkirim!", "success");
-
                     //redirect ke halaman success
                     window.location.href = "{{ url('/success') }}";
                     // Enable button kirim
@@ -487,7 +470,7 @@
         });
     </script>
 
-    {{-- get content --}}
+    {{-- get banner --}}
     <script>
         //get element
         var carouselInner = document.querySelector(".carousel-inner");
@@ -522,4 +505,5 @@
             })
         })
     </script>
+
 @endsection

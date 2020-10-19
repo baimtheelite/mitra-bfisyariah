@@ -35,13 +35,14 @@
 @section('content')
 
 {{-- Content Header --}}
-<x-admin.content-header title="Dashboard">
+<x-admin.content-header title="Content">
   <x-admin.breadcrumb-item url="/admin-wp" item="Dashboard" />
   <x-admin.breadcrumb-item url="/admin-wp/content" item="Content" />
 </x-admin.content-header>
 
 <div class="content">
   <div class="container-fluid">
+    
     {{-- Banner --}}
     <div class="card card-info">
       <div class="card-header">
@@ -65,7 +66,7 @@
         </div>
         </div>
     </div>
-    
+
     {{-- Logo Merchant --}}
     <div class="card card-primary">
       <div class="card-header">
@@ -90,7 +91,29 @@
       </div>
     </div>
 
-    
+    {{-- Paket Cicilan --}}
+    <div class="card card-secondary">
+      <div class="card-header">
+        <h3 class="card-title">Paket Cicilan</h3>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-12 col-md-12">
+            <p>Gambar Paket Cicilan yang ter-upload, disarankan upload gambarnya yang tipe .png</p>
+            <div id="list-paket-cicilan">
+              {{--  --}}
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 col-lg-12">
+              <button type="button" class="btn btn-default mt-2" data-toggle="modal" data-target="#modal-paket-cicilan">
+              Upload Paket Cicilan
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -174,6 +197,54 @@
       </div>
     </div>
   </div>
+
+  {{-- Modal Paket Cicilan --}}
+  <div class="modal fade" id="modal-paket-cicilan">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <form role="form">
+          <div class="modal-header">
+          <h4 class="modal-title">Upload Paket Cicilan</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+          </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="paket-cicilan-title">Judul</label>
+            <input class="form-control" type="text" id="paket-cicilan-title">
+          </div>
+          <div class="form-group">
+            <label for="paket-cicilan-subtitle">Sub-Judul</label>
+            <input class="form-control" type="text" id="paket-cicilan-subtitle">
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+            <div class="custom-file">
+            <input type="file" class="custom-file-input" id="filePaketCicilan" accept="image/png">
+            <label class="custom-file-label" for="filePaketCicilan">Pilih Paket Cicilan</label>
+            </div>
+            </div>
+            <div class="progress mt-1">
+              <div
+              id="loadingPaketCicilan"
+              class="progress-bar progress-bar-striped"
+              role="progressbar"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              style="width: 0%"
+              >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+        <button type="button" id="submitPaketCicilan" class="btn btn-primary">Save changes</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
 @endsection
 
 @section('scripts')
@@ -186,7 +257,7 @@
     @param file get element file upload
     @param filePath set file path reference
   */
-  function uploadStorage (loadingBar, submitButton, file, filePath)
+  function uploadStorage (loadingBar, submitButton, file, filePath, title = null, subtitle = null)
   {
     // Get Elements
     var loading = document.getElementById(loadingBar);
@@ -236,9 +307,19 @@
             //merubah kembali teks tombol submit menjadi 'Submit'
             submit.innerHTML = "Submit";
 
-
             swal("Good job!", "Da terkirim!", "success");
+            
+            if (title != null && subtitle != null) {
+              var textTitle = document.getElementById(title);
+              var textSubtitle = document.getElementById(subtitle);
 
+              firebase.database().ref('paket-trip/').push({
+                title: title,
+                subtitle: subtitle,
+                gambar: file.name
+              });
+
+            }
           }
 
       )
@@ -300,9 +381,14 @@
   uploadStorage('loadingLogo', 'submitLogo', 'fileLogo', 'logo-merchant');
   //Upload Banner
   uploadStorage('loadingBanner', 'submitBanner', 'fileBanner', 'banner');
+  //Upload Paket Cicilan
+  uploadStorage('loadingPaketCicilan', 'submitPaketCicilan', 'filePaketCicilan', 'paket-cicilan', 'paket-cicilan-title', 'paket-cicilan-subtitle');
 
   getStorage('banner', 'list-banner');
+
   getStorage('logo-merchant', 'list-logo');
+
+  getStorage('paket-cicilan', 'list-paket-cicilan');
 
   
 </script>

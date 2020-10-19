@@ -6,16 +6,17 @@ use Illuminate\View\Component;
 
 class paketTrip extends Component
 {
-    public $judul, $harga;
+    public $judul, $harga, $gambar;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($judul, $harga)
+    public function __construct($judul, $harga, $gambar)
     {
         $this->judul = $judul;
         $this->harga = $harga;
+        $this->gambar = $gambar;
     }
 
     /**
