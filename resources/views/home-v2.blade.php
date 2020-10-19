@@ -172,9 +172,7 @@
     {{-- <div class="container"> --}}
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" >
             <ol class="carousel-indicators">
-              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                {{--  --}}
             </ol>
             <div class="carousel-inner">
               <div class="carousel-item active">
@@ -487,5 +485,41 @@
                 scrollTop: $("#form-section").offset().top
             }, 2000);
         });
+    </script>
+
+    {{-- get content --}}
+    <script>
+        //get element
+        var carouselInner = document.querySelector(".carousel-inner");
+        var carouselIndex = document.querySelector(".carousel-indicators");
+        //untuk menampung list gambar
+        var content = '';
+        
+        var carouselIndicators = '';
+        var carouselCount = 0;
+        // Get Files List
+        var ref = firebase.storage().ref('bfisyariah/banner/');
+        var active = 1;
+        ref.listAll().then((res) => {
+            res.items.forEach((itemRef) => {
+                    ref.child(itemRef.name).getDownloadURL().then((url) => {
+
+                    content += `<div class="carousel-item ${active == 1 ? 'active' : '' }">
+                    <img class="d-block w-100 banner" src="${url}" alt="Second slide">
+                    </div>`;
+
+                    carouselIndicators += `<li data-target="#carouselExampleIndicators" data-slide-to="${carouselCount}" class="${carouselCount == 0 ? 'active' : ''}"></li>`;
+                    
+
+                    carouselInner.innerHTML = content;
+                    carouselIndex.innerHTML = carouselIndicators;
+
+                    active++;
+                    carouselCount++;
+                }).catch((error) => {
+                    console.log(error);
+                });
+            })
+        })
     </script>
 @endsection

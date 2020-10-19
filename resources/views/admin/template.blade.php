@@ -72,6 +72,9 @@
 <script src="{{ asset("administrator/plugins/datatables-responsive/js/dataTables.responsive.min.js") }} "></script>
 <script src="{{ asset("administrator/plugins/datatables-responsive/js/responsive.bootstrap4.min.js") }} "></script>
 
+{{-- Sweet Alert --}}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-app.js"></script>
