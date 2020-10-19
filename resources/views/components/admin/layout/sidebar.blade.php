@@ -38,14 +38,14 @@
             </p>
           </a>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
         <a href="{{ url("admin-wp/page") }}" class="nav-link">
             <i class="nav-icon fas fa-book-open"></i>
             <p>
               Page
             </p>
           </a>
-        </li>
+        </li> --}}
       </ul>
     </nav>
     <!-- /.sidebar-menu -->
