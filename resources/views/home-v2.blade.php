@@ -311,22 +311,22 @@
                 {{-- <div class="flex-container"> --}}
                     <div class="row paket-trip-small">
                         <div class="col-lg-4 col-md-4 col-6 px-0">
-                            <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
+                            <x-paket-trip judul="Umroh Super Saver Double" keterangan="Rp 810,000 / Bulan" gambar="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" />
                         </div>
                         <div class="col-lg-4 col-md-4 col-6 px-0">
-                            <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
+                            <x-paket-trip judul="Umroh Super Saver Double" keterangan="Rp 810,000 / Bulan" gambar="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" />
                         </div>
                         <div class="col-lg-4 col-md-4 col-6 px-0">
-                            <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
+                            <x-paket-trip judul="Umroh Super Saver Double" keterangan="Rp 810,000 / Bulan" gambar="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" />
                         </div>
                         <div class="col-lg-4 col-md-4 col-6 px-0">
-                            <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
+                            <x-paket-trip judul="Umroh Super Saver Double" keterangan="Rp 810,000 / Bulan" gambar="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" />
                         </div>
                         <div class="col-lg-4 col-md-4 col-6 px-0">
-                            <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
+                            <x-paket-trip judul="Umroh Super Saver Double" keterangan="Rp 810,000 / Bulan" gambar="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" />
                         </div>
                         <div class="col-lg-4 col-md-4 col-6 px-0">
-                            <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
+                            <x-paket-trip judul="Umroh Super Saver Double" keterangan="Rp 810,000 / Bulan" gambar="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" />
                         </div>
                     </div>
                     {{-- </div> --}}

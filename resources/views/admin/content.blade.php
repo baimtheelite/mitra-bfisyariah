@@ -257,7 +257,7 @@
     @param file get element file upload
     @param filePath set file path reference
   */
-  function uploadStorage (loadingBar, submitButton, file, filePath, title = null, subtitle = null)
+  function uploadStorage (loadingBar, submitButton, file, filePath, title = null, subtitle = null, ref = null)
   {
     // Get Elements
     var loading = document.getElementById(loadingBar);
@@ -313,7 +313,7 @@
               var textTitle = document.getElementById(title);
               var textSubtitle = document.getElementById(subtitle);
 
-              firebase.database().ref('paket-trip/').push({
+              firebase.database().ref(ref).push({
                 title: title,
                 subtitle: subtitle,
                 gambar: file.name
@@ -332,7 +332,7 @@
     @param storageContainer div untuk menampung file
   */
   function getStorage(folder, storageContainer) 
-  {
+  { 
     //get element
     var listStorage = document.getElementById(storageContainer);
     //untuk menampung list gambar
@@ -381,16 +381,25 @@
   uploadStorage('loadingLogo', 'submitLogo', 'fileLogo', 'logo-merchant');
   //Upload Banner
   uploadStorage('loadingBanner', 'submitBanner', 'fileBanner', 'banner');
-  //Upload Paket Cicilan
-  uploadStorage('loadingPaketCicilan', 'submitPaketCicilan', 'filePaketCicilan', 'paket-cicilan', 'paket-cicilan-title', 'paket-cicilan-subtitle');
+  // Upload Paket Cicilan
+  uploadStorage('loadingPaketCicilan', 'submitPaketCicilan', 'filePaketCicilan', 'paket-cicilan', 'paket-cicilan-title', 'paket-cicilan-subtitle', 'paket-cicilan');
 
   getStorage('banner', 'list-banner');
 
   getStorage('logo-merchant', 'list-logo');
 
-  getStorage('paket-cicilan', 'list-paket-cicilan');
+  // getStorage('paket-cicilan', 'list-paket-cicilan');
 
   
+</script>
+
+{{-- Paket Cicilan --}}
+<script>
+  firebase.database().ref('paket-cicilan/').on('value', (snapshot) => {
+    snapshot.forEach((child) => {
+      console.log(child.val());
+    })
+  })
 </script>
 
 {{-- Owl Carousel --}}
