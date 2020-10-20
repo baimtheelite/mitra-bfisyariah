@@ -7,7 +7,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'UA-129708943-7');
 </script>
 
@@ -19,6 +18,25 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">    {{-- Font Awesome --}}
     <link href="{{ asset("css/all.css")}}" rel="stylesheet"> <!--load all styles -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+    <!-- Primary Meta Tags -->
+    <title>#JauhLebihTenang Pembiayaan Syariah di BFI Finance Syariah</title>
+    <meta name="title" content="BFI Finance Syariah - #JauhLebihTenang Dengan Pembiayaan Syariah">
+    <meta name="description" content="Mulai sekarang gunakan pembiayaan syariah untuk memenuhi kebutuhan anda tanpa denda dan tanpa provisi. Hubungi kami via Whatsapp di 0811977500.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bfisyariah.id/">
+    <meta property="og:title" content="BFI Finance Syariah - #JauhLebihTenang Dengan Pembiayaan Syariah">
+    <meta property="og:description" content="Mulai sekarang gunakan pembiayaan syariah untuk memenuhi kebutuhan anda tanpa denda dan tanpa provisi. Hubungi kami via Whatsapp di 0811977500.">
+    <meta property="og:image" content="">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://bfisyariah.id/">
+    <meta property="twitter:title" content="BFI Finance Syariah - #JauhLebihTenang Dengan Pembiayaan Syariah">
+    <meta property="twitter:description" content="Mulai sekarang gunakan pembiayaan syariah untuk memenuhi kebutuhan anda tanpa denda dan tanpa provisi. Hubungi kami via Whatsapp di 0811977500.">
+    <meta property="twitter:image" content="">
 
     {{-- Google Font --}}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">

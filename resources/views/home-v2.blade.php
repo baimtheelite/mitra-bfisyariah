@@ -129,7 +129,7 @@
         }
 
         .banner {   
-            max-width: 960px;
+            max-width: 1080px;
             max-height: 500px;
             /* max-height: 400px */
         }
@@ -157,7 +157,7 @@
     </style>
 @endsection
 
-@section('title', 'BFI Finance - #JauhLebihTenang')
+@section('title', '#JauhLebihTenang Pembiayaan di BFI Finance Syariah')
 
 @section('content')
 
