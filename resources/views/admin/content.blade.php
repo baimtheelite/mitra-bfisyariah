@@ -215,8 +215,8 @@
             <input class="form-control" type="text" id="paket-cicilan-title">
           </div>
           <div class="form-group">
-            <label for="paket-cicilan-subtitle">Sub-Judul</label>
-            <input class="form-control" type="text" id="paket-cicilan-subtitle">
+            <label for="paket-cicilan-keterangan">Keterangan</label>
+            <input class="form-control" type="text" id="paket-cicilan-keterangan">
           </div>
           <div class="form-group">
             <div class="input-group">
@@ -240,6 +240,7 @@
         </div>
         <div class="modal-footer justify-content-between">
         <button type="button" id="submitPaketCicilan" class="btn btn-primary">Save changes</button>
+        <button type="button" id="test" class="btn btn-primary">asddasa</button>
         </div>
         </form>
       </div>
@@ -250,6 +251,11 @@
 @section('scripts')
 
 <script>
+  document.getElementById("test").addEventListener("click", function(){
+    console.log(document.getElementById("paket-cicilan-title").value);
+    console.log(document.getElementById("paket-cicilan-keterangan").value);
+  })
+
   /*
     @desc function untuk upload data ke firebase storage
     @param loadingBar get element loading bar
@@ -257,12 +263,14 @@
     @param file get element file upload
     @param filePath set file path reference
   */
-  function uploadStorage (loadingBar, submitButton, file, filePath, title = null, subtitle = null, ref = null)
+  function uploadStorage (loadingBar, submitButton, file, filePath, data = {}, ref = null)
   {
     // Get Elements
     var loading = document.getElementById(loadingBar);
     var submit = document.getElementById(submitButton);
     var fileButton = document.getElementById(file);
+
+    
 
     // Listen for file selecction
     var file;
@@ -309,16 +317,15 @@
 
             swal("Good job!", "Da terkirim!", "success");
             
-            if (title != null && subtitle != null) {
-              var textTitle = document.getElementById(title);
-              var textSubtitle = document.getElementById(subtitle);
-
-              firebase.database().ref(ref).push({
-                title: title,
-                subtitle: subtitle,
-                gambar: file.name
-              });
-
+            if (data != null) {
+              for (var prop in data){
+                // console.log(data[prop]);
+                // eval("data")
+                eval("data." + prop + " = document.getElementById(data[prop]).value")
+              }
+              data.gambar = file.name;
+              // console.log(data);
+              firebase.database().ref(ref).push(data);
             }
           }
 
@@ -381,8 +388,12 @@
   uploadStorage('loadingLogo', 'submitLogo', 'fileLogo', 'logo-merchant');
   //Upload Banner
   uploadStorage('loadingBanner', 'submitBanner', 'fileBanner', 'banner');
+  
   // Upload Paket Cicilan
-  uploadStorage('loadingPaketCicilan', 'submitPaketCicilan', 'filePaketCicilan', 'paket-cicilan', 'paket-cicilan-title', 'paket-cicilan-subtitle', 'paket-cicilan');
+  uploadStorage('loadingPaketCicilan', 'submitPaketCicilan', 'filePaketCicilan', 'paket-cicilan', {
+    title: "paket-cicilan-title", 
+    keterangan: "paket-cicilan-keterangan"
+    }, 'paket-cicilan');
 
   getStorage('banner', 'list-banner');
 
@@ -395,9 +406,18 @@
 
 {{-- Paket Cicilan --}}
 <script>
+  var content = '';
   firebase.database().ref('paket-cicilan/').on('value', (snapshot) => {
     snapshot.forEach((child) => {
-      console.log(child.val());
+      firebase.storage().ref('bfisyariah/paket-cicilan').child(child.val().gambar).getDownloadURL().then(function(url){
+        content += 
+        `<div class="card card-body">
+          <p class="card-title">${child.val().title}</p>
+          <p class="card-text">${child.val().keterangan}</p>
+          <img src="${url}" style="height: auto; width: 150px">
+        </div>`
+        document.getElementById("list-paket-cicilan").innerHTML = content;
+      });
     })
   })
 </script>
