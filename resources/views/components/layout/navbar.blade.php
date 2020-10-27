@@ -11,12 +11,12 @@
     
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a class="nav-link {{ (request()->segment(1) == 'explore') ? 'active' : '' }}" href="#">Explore</a>
           </li>
           <li class="nav-item">
             <a class="nav-link {{ (request()->segment(1) == 'promo') ? 'active' : '' }}" href="#">Promo</a>
-          </li>
+          </li> --}}
           <li class="nav-item">
             <a class="nav-link {{ (request()->segment(1) == 'kontak') ? 'active' : '' }}" href="{{ url("kontak") }}">Kontak</a>
           </li>

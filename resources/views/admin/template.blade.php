@@ -12,7 +12,8 @@
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{ asset("administrator/plugins/fontawesome-free/css/all.min.css") }}">
-  <!-- IonIcons -->
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  <!-- IonIcons --> 
   <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset("administrator/dist/css/adminlte.min.css") }}">

@@ -76,17 +76,11 @@
             bottom: 50px;
         }
         
+        .paket-cicilan-card {
+            margin-top: .5rem;
+        }
+        
         @media only screen and (max-width: 600px) {
-            .paket-trip-small {
-                margin-left: .5rem;
-                margin-right: .5rem;
-            }
-            
-            .paket-trip-big {
-                margin-left: 1.5rem;
-                margin-right: 1.5rem;
-                margin-bottom: .5rem; 
-            }
 
             #form-section {
                 position: relative;
@@ -98,7 +92,6 @@
         .form-konsumen {
             padding: 0;
             margin: 0;
-            /* position: absolute; */
             width: 100%;
             z-index: 999;
             border: none;
@@ -128,10 +121,8 @@
             padding: 12px;
         }
 
-        .banner {   
-            max-width: 1080px;
-            max-height: 500px;
-            /* max-height: 400px */
+        .banner {
+            height: auto;
         }
 
         .separator {
@@ -298,39 +289,8 @@
 <section class="pt-4 pb-4">
     <div class="container">
         <h2 class="text-center p-4">Paket Cicilan Tanpa Denda</h2>
-        <div class="row">
-            <div class="col-lg-4 col-md-4 p-0 paket-trip-big card shadow">
-                <img class="card-img-top p-0 m-0" src="{{ asset("img/autumn.jpg") }}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Pattaya Island Tour</h5>
-                        <p class="card-text">Wujudkan impian  suci bersama My Ihram. Kami bekerjasama dengan AliaGo Tour and Travel mengadakan perjalanan umroh selama 9 hari.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-            </div>
-            <div class="col-lg-8 col-md-8 col-12" style="padding-left: 20px;">
-                {{-- <div class="flex-container"> --}}
-                    <div class="row paket-trip-small">
-                        <div class="col-lg-4 col-md-4 col-6 px-0">
-                            <x-paket-trip judul="Umroh Super Saver Double" keterangan="Rp 810,000 / Bulan" gambar="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" />
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-6 px-0">
-                            <x-paket-trip judul="Umroh Super Saver Double" keterangan="Rp 810,000 / Bulan" gambar="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" />
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-6 px-0">
-                            <x-paket-trip judul="Umroh Super Saver Double" keterangan="Rp 810,000 / Bulan" gambar="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" />
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-6 px-0">
-                            <x-paket-trip judul="Umroh Super Saver Double" keterangan="Rp 810,000 / Bulan" gambar="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" />
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-6 px-0">
-                            <x-paket-trip judul="Umroh Super Saver Double" keterangan="Rp 810,000 / Bulan" gambar="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" />
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-6 px-0">
-                            <x-paket-trip judul="Umroh Super Saver Double" keterangan="Rp 810,000 / Bulan" gambar="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" />
-                        </div>
-                    </div>
-                    {{-- </div> --}}
-            </div>
+        <div class="row paket-cicilan">
+            {{--  --}}
         </div>
     </div>
 </section>
@@ -351,6 +311,26 @@
 
 {{-- Footbar --}}
 <x-layout.footbar />
+
+{{-- Modal Pop-up --}}
+<div id="pop-up" class="modal fade">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Pop-up</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="pop-up-image">
+                    {{--  --}}
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="dont-show" type="button" class="btn btn-defaut" data-dismiss="modal">Jangan Tampilkan lagi</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 @endsection
 
@@ -480,16 +460,18 @@
         
         var carouselIndicators = '';
         var carouselCount = 0;
-        // Get Files List
-        var ref = firebase.storage().ref('bfisyariah/banner/');
         var active = 1;
-        ref.listAll().then((res) => {
-            res.items.forEach((itemRef) => {
-                    ref.child(itemRef.name).getDownloadURL().then((url) => {
 
-                    content += `<div class="carousel-item ${active == 1 ? 'active' : '' }">
-                    <img class="d-block w-100 banner" src="${url}" alt="Second slide">
-                    </div>`;
+        firebase.database().ref('banner/').on('value', (snapshot) => {
+            snapshot.forEach((child) => {
+                firebase.storage().ref('bfisyariah/banner').child(child.val().gambar).getDownloadURL().then((url) => {
+                    content += `
+                        <div class="carousel-item ${active == 1 ? 'active' : '' }">
+                            <a target="_blank" href="${child.val().link}">
+                                <img class="d-block w-100 banner" alt="${child.val().alt}" src="${url}">
+                            </a>
+                        </div>
+                    `;
 
                     carouselIndicators += `<li data-target="#carouselExampleIndicators" data-slide-to="${carouselCount}" class="${carouselCount == 0 ? 'active' : ''}"></li>`;
                     
@@ -499,9 +481,62 @@
 
                     active++;
                     carouselCount++;
-                }).catch((error) => {
+            }).catch((error) => {
                     console.log(error);
+            });
+            })
+        })
+    </script>
+
+    {{-- paket cicilan --}}
+    <script>
+        var paketCicilanContent = '';
+        firebase.database().ref('paket-cicilan/').once('value', (snapshot) => {
+            snapshot.forEach((child) => {
+                firebase.storage().ref('bfisyariah/paket-cicilan').child(child.val().gambar).getDownloadURL().then(function(url){
+                    paketCicilanContent += `
+                    <div class="col-lg-4 col-md-4 col-6 p-0">
+                        <x-paket-trip judul="${child.val().title}" keterangan="${child.val().keterangan}" gambar="${url}" whatsapp="${child.val().whatsapp}" />               
+                    </div>
+                    `;
+                    document.querySelector(".paket-cicilan").innerHTML = paketCicilanContent;
                 });
+
+            })
+        })
+    </script>
+
+    {{-- pop-up --}}
+    <script>
+        $(document).ready(function() {
+            // get element tempat untuk menaruh gambar pop-up di modal
+            var popUpImage = document.querySelector("#pop-up-image");
+            var content = '';
+            firebase.database().ref("pop-up").once("value", (snapshot) => {
+                snapshot.forEach((child) => {
+                    firebase.storage().ref('bfisyariah/pop-up').child(child.val().gambar).getDownloadURL().then((url) => {
+
+                        //jika gambar pop-up, di ceklis
+                        if (child.val().display == true) {
+                            content = `
+                                <img class="mx-auto d-block" src=${url} />
+                            `;
+                            popUpImage.innerHTML = content
+                        }
+                    })
+                })
+            })
+
+            // jika tombol 'jangan lagi tampilkan' belum di-klik, maka tampilkan pop-up
+            if(sessionStorage.getItem("hide-popup") == undefined) {
+                setTimeout(() => {
+                    $("#pop-up").modal();
+                }, 3000);
+            }
+
+
+            $("#dont-show").click(function() {
+                sessionStorage.setItem("hide-popup", "true");
             })
         })
     </script>

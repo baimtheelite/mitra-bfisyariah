@@ -22,6 +22,12 @@
             color: white;
             padding: 10px;
         }
+
+        .banner {   
+            max-width: 1920px;
+            max-height: 500px;
+            /* max-height: 400px */
+        }
     </style>
 @endsection
 
@@ -30,24 +36,43 @@
 <x-layout.navbar />
 
 {{-- Hero --}}
-<section>
+{{-- <section>
     <div class="jumbotron jumbotron-fluid center" style="background: rgba(0, 0, 0, 5); min-height: 500px; background-color: rgba(0, 0, 0, 0.8) ">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 center text-white">
                     <h1 class="mx-5" style="font-size: 3.5rem">#JauhLebihTenang</h1><br>
                     <p class="lead">Dengan pembiayaan tanpa denda dan tanpa provisi di BFI Finance Syariah menggunakan akad dan proses syariah yang transaparan.</p>
-                    {{-- <p class="lead">
-                        <button class="btn btn-primary">Lihat</button>
-                    </p> --}}
                 </div>
             </div>
         </div>
     </div>
+</section> --}}
+
+{{-- Carousel --}}
+<section>
+    {{-- <div class="container"> --}}
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" >
+            <ol class="carousel-indicators">
+                {{--  --}}
+            </ol>
+            <div class="carousel-inner">
+                {{--  --}}
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+        </div>
+    {{-- </div> --}}
 </section>
 
 {{-- Contact FORM --}}
-<section>
+<section class="mt-5">
     <div class="container">
         <div class="row mb-4">
             <div class="col-lg-6 col-md-6">
@@ -107,38 +132,14 @@
 <section class="pt-4 pb-4">
     <div class="container">
         <h2 class="text-center p-4">Paket Cicilan Tanpa Denda</h2>
-        <div class="row">
-            <div class="col-lg-4 col-md-4 mr-0 card p-0">
-                <img class="card-img-top p-0 m-0" src="{{ asset("img/autumn.jpg") }}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Pattaya Island Tour</h5>
-                        <p class="card-text">Wujudkan impian ke tanah suci bersama My Ihram. Kami bekerjasama dengan AliaGo Tour and Travel mengadakan perjalanan umroh selama 9 hari.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
+        <div class="row paket-cicilan">
+            <div class="col-lg-4 col-md-4 p-0 paket-cicilan-big card shadow">
+                {{--  --}}
             </div>
             <div class="col-lg-8 col-md-8 col-12" style="padding-left: 20px;">
-                {{-- <div class="flex-container"> --}}
-                    <div class="row">
-                        <div class="col-lg-4 col-md-4 col-6" style="padding-left: 0px; padding-right: 0px">
-                            <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-6" style="padding-left: 0px; padding-right: 0px">
-                            <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-6" style="padding-left: 0px; padding-right: 0px">
-                            <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-6" style="padding-left: 0px; padding-right: 0px">
-                            <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-6" style="padding-left: 0px; padding-right: 0px">
-                            <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-6" style="padding-left: 0px; padding-right: 0px">
-                            <x-paket-trip judul="Umroh Super Saver Double" harga="Rp 810,000 / Bulan" />
-                        </div>
-                    </div>
-                    {{-- </div> --}}
+                <div class="row paket-cicilan-small">
+                    {{--  --}}
+                </div>
             </div>
         </div>
     </div>
@@ -184,6 +185,60 @@
 
                     form.reset();
                 }
+            })
+        })
+    </script>
+
+    {{-- get banner --}}
+    <script>
+        //get element
+        var carouselInner = document.querySelector(".carousel-inner");
+        var carouselIndex = document.querySelector(".carousel-indicators");
+        //untuk menampung list gambar
+        var content = '';
+        
+        var carouselIndicators = '';
+        var carouselCount = 0;
+        // Get Files List
+        var ref = firebase.storage().ref('bfisyariah/banner/');
+        var active = 1;
+        ref.listAll().then((res) => {
+            res.items.forEach((itemRef) => {
+                    ref.child(itemRef.name).getDownloadURL().then((url) => {
+
+                    content += `<div class="carousel-item ${active == 1 ? 'active' : '' }">
+                    <img class="d-block w-100 banner" src="${url}" alt="Second slide">
+                    </div>`;
+
+                    carouselIndicators += `<li data-target="#carouselExampleIndicators" data-slide-to="${carouselCount}" class="${carouselCount == 0 ? 'active' : ''}"></li>`;
+                    
+
+                    carouselInner.innerHTML = content;
+                    carouselIndex.innerHTML = carouselIndicators;
+
+                    active++;
+                    carouselCount++;
+                }).catch((error) => {
+                    console.log(error);
+                });
+            })
+        })
+    </script>
+
+     {{-- paket cicilan --}}
+    <script>
+        var paketCicilanContent = '';
+        firebase.database().ref('paket-cicilan/').once('value', (snapshot) => {
+            snapshot.forEach((child) => {
+                firebase.storage().ref('bfisyariah/paket-cicilan').child(child.val().gambar).getDownloadURL().then(function(url){
+                    paketCicilanContent += `
+                    <div class="col-lg-4 col-md-4 col-6 p-0">
+                        <x-paket-trip judul="${child.val().title}" keterangan="${child.val().keterangan}" gambar="${url}" whatsapp="${child.val().whatsapp}" />               
+                    </div>
+                    `;
+                    document.querySelector(".paket-cicilan").innerHTML = paketCicilanContent;
+                });
+
             })
         })
     </script>

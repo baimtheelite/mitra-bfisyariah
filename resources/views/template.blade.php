@@ -53,6 +53,30 @@
             font-family: "Poppins";
             padding-top: 72px;
         }
+
+        .navbar-toggler {
+            padding: 2px;
+        }
+
+        .navbar-toggler-icon {
+            height: 25px;
+            width: 25px;
+        }
+
+        #logo-ojk-mobile {
+            display: none;
+        }   
+        /* Extra small devices (phones, 600px and down) */
+        @media only screen and (max-width: 600px) {
+            #logo-ojk-desktop {
+                display: none;
+            }
+            #logo-ojk-mobile {
+                display: inline;
+                float: right;
+            }   
+        }
+
     </style>
 
     @yield('style')

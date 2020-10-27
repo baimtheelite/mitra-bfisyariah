@@ -8,16 +8,18 @@ class paketTrip extends Component
 {
     public $judul;
     public $keterangan;
+    public $whatsapp;
     public $gambar;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($judul, $keterangan, $gambar)
+    public function __construct($judul, $keterangan, $gambar, $whatsapp)
     {
         $this->judul = $judul;
         $this->keterangan = $keterangan;
+        $this->whatsapp = $whatsapp;
         $this->gambar = $gambar;
     }
 

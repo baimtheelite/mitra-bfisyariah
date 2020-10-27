@@ -54,11 +54,10 @@
     logoRef.listAll().then((res) => {
         res.items.forEach((itemRef) => {
         // console.log(itemRef.name);
-        logoRef.child(itemRef.name).getDownloadURL().then((url) => {
-
-        content += `<img src="${url}">`;
-        listLogo.innerHTML = content;
-        console.log(url);
+          logoRef.child(itemRef.name).getDownloadURL().then((url) => {
+            content += `<img src="${url}">`;
+            listLogo.innerHTML = content;
+            console.log(url);
         }).catch((error) => {
             console.log(error);
         });
