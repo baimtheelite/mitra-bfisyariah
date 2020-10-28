@@ -13,6 +13,53 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-12">
+          {{-- Data Form Konsumen --}}
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Data Form Konsumen</div>
+            </div>
+            <div class="card-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Nama Lengkap</th>
+                    <th>Nomor Whatsapp</th>
+                    <th>Nilai Pembiayaan</th>
+                    <th>Tujuan Pembiayaan</th>
+                    <th>Cabang Terdekat</th>
+                    <th>Merk Mobil</th>
+                    <th>Tipe Mobil</th>
+                  </tr>
+                </thead>
+                <tbody id="row-form-konsumen">
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {{-- Data Form Kontak --}}
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Data Form Kontak</div>
+            </div>
+            <div class="card-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Nama Lengkap</th>
+                    <th>No Whatsapp</th>
+                    <th>Pesan</th>
+                  </tr>
+                </thead>
+                <tbody id="row-kontak">
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {{-- Download Form To CSV --}}
           <div class="card">
             <div class="card-header">Download data form</div>
             <div class="card-body">
@@ -90,17 +137,41 @@
   
 </script>
 
+  {{-- Table Form Konsumen --}}
   <script>
-    firebase.database().ref('/contact_form').on('value', (snapshot) => {
+    var rowsFormKonsumen = '';
+    firebase.database().ref('/form').once('value', (snapshot) => {
       snapshot.forEach((child) => {
-        console.log(child.val());
+        rowsFormKonsumen += `
+          <tr>
+            <td>${child.val().nama_lengkap}</td>
+            <td>${child.val().no_hp}</td>
+            <td>${child.val().nilai_pembiayaan}</td>
+            <td>${child.val().tujuan_pembiayaan}</td>
+            <td>${child.val().cabang_terdekat}</td>
+            <td>${child.val().merk_mobil}</td>
+            <td>${child.val().tipe_mobil}</td>
+          </tr>
+        `;
       })
-    }, (error) => {
-      if(error) {
-        console.log(error);
-      } else {
-        console.log('succcesssdfs');
-      }
+      document.querySelector("#row-form-konsumen").innerHTML = rowsFormKonsumen;
+    })
+  </script>
+
+  {{-- Table Form Kontak --}}
+  <script>
+    var rowsFormKontak = '';
+    firebase.database().ref('/contact_form').once('value', (snapshot) => {
+      snapshot.forEach((child) => {
+        rowsFormKontak += `
+          <tr>
+            <td>${child.val().nama_lengkap}</td>
+            <td>${child.val().no_whatsapp}</td>
+            <td>${child.val().pesan}</td>
+          </tr>
+        `;
+      })
+      document.querySelector("#row-kontak").innerHTML = rowsFormKontak;
     })
   </script>
 @endsection 
