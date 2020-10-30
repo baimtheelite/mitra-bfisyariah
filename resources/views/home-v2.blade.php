@@ -247,6 +247,10 @@
 {{-- feature section --}}
 <section class="secondary" style="padding: 5%">
     <div class="container">
+        <div class="title-feature text-center">
+            <h1>Feature</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda cumque dolore dolores eaque nam vitae, fuga hic aut doloribus atque, voluptate repellat maxime nostrum molestias omnis optio, sit ullam repellendus. </p>
+        </div>
         <div class="row">
             <div id="partner-carousel" class="owl-carousel owl-theme">
                 <div class="item d-flex">
@@ -291,8 +295,9 @@
 {{-- Paket Cicilan --}}
 <section class="pt-4 pb-4">
     <div class="container">
-        <div class="title-paket-cicilan">
-            <h2 class="text-center p-4">Paket Cicilan Tanpa Denda</h2>
+        <div class="title-paket-cicilan text-center p-4">
+            <h1>Paket Cicilan Tanpa Denda</h1>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate omnis, neque inventore quo perferendis officia nemo veniam labore a officiis, odio, quasi facere ipsa accusantium beatae quam commodi voluptatem voluptates.</p>
         </div>
         <div class="row paket-cicilan">
             {{--  --}}
