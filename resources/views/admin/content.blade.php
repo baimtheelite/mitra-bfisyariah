@@ -42,6 +42,7 @@
 
 <div class="content">
   <div class="container-fluid">
+
     {{-- Banner --}}
     <div class="card card-info">
       <div class="card-header">
@@ -50,7 +51,7 @@
       <div class="card-body">
         <div class="row">
           <div class="col-lg-12 col-md-12">
-            <p>Gambar Banner yang ter-upload, disarankan upload gambarnya yang ukurannya 1500 x 500</p>
+            <p>Gambar Banner yang ter-upload, disarankan upload gambarnya yang ukurannya 1500 x 500 px</p>
             <div id="list-banner">
               {{--  --}}
             </div>
@@ -66,30 +67,6 @@
         </div>
     </div>
 
-    {{-- Logo Merchant --}}
-    <div class="card card-primary">
-      <div class="card-header">
-        <h3 class="card-title">Logo Merchant</h3>
-      </div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-lg-12 col-md-12">
-            <p>Gambar Logo Merchant yang ter-upload, disarankan upload gambarnya yang tipe .png</p>
-            <div id="list-logo">
-              {{--  --}}
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 col-lg-12">
-              <button type="button" class="btn btn-default mt-2" data-toggle="modal" data-target="#modal-logo">
-              Upload Logo Merchant
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
     {{-- Paket Cicilan --}}
     <div class="card card-secondary">
       <div class="card-header">
@@ -98,7 +75,7 @@
       <div class="card-body">
         <div class="row">
           <div class="col-lg-12 col-md-12">
-            <p>Gambar Paket Cicilan yang ter-upload, disarankan upload gambarnya ukuran height-nya 200px</p>
+            <p>Gambar Paket Cicilan yang ter-upload, disarankan upload gambarnya ukuran 960 x 540 px</p>
             <div id="list-paket-cicilan">
               {{--  --}}
             </div>
@@ -122,7 +99,7 @@
       <div class="card-body">
         <div class="row">
           <div class="col-lg-12 col-md-12">
-            <p>Pop-up yang akan tampil ketika halaman landing page dibuka</p>
+            <p>Pop-up yang akan tampil ketika halaman landing page dibuka, disarankan upload yang ukuran 400 X 600 px</p>
             <div id="list-pop-up">
               {{--  --}}
             </div>
@@ -452,18 +429,17 @@
   function deleteStorage(folder, item, key=null)
   {
     // Create a reference to the file to delete
-    var itemRef = firebase.storage().ref('bfisyariah/' + folder + '/' + item);
-    console.log(item);
-    console.log(key);
-    itemRef.delete().then(function() {
-      // File deleted successfully
-      swal("Good job!", "Data terhapus!", "success").then((value) => {
-          // swal(`The returned value is: ${value}`);
-          location.reload();
+    if(confirm("Apakah anda yakin ingin menghapus data ini?")){
+      var itemRef = firebase.storage().ref('bfisyariah/' + folder + '/' + item);
+      itemRef.delete().then(function() {
+        // File deleted successfully
+        swal("Good job!", "Data terhapus!", "success").then((value) => {
+            location.reload();
+        });
+      }).catch(function(error) {
+        console.log(error);
       });
-    }).catch(function(error) {
-      console.log(error);
-    });
+    }
   }
 
 
@@ -495,9 +471,6 @@
 
   getStorage('logo-merchant', 'list-logo');
 
-  // getStorage('pop-up', 'list-pop-up');
-
-  
 </script>
 
 {{-- Paket Cicilan --}}
@@ -510,10 +483,6 @@
 
         content += 
         `<div class="card">
-          <div class="card-header">
-            <input name="paket-cicilan-highlight" data-key="${child.key}" onclick="setHighlight()" type="radio" ${child.val().highlight == true ? 'checked' : ''}>
-            <label for="paket-cicilan-highlight">Highlight</label>
-          </div>
           <div class="card-body">
             <button type="button" class="btn btn-danger float-right" onclick="deletePaketCicilan('${child.key}')">Delete</button>
             <p class="card-title">${child.val().title}</p>
@@ -529,17 +498,17 @@
 
   const deletePaketCicilan = (key) => {
     // Delete firebase realtime database
-    firebase.database().ref('paket-cicilan/' + key).remove((error) => {
-      if(error) {
-        console.log(error);
-      } else {
-        swal("Good job!", "Data terhapus!", "success").then((value) => {
-          location.reload();
-        });
-      }
-    });
-    // console.log(key);
-    
+    if(confirm("Apakah anda yakin ingin menghapus data ini?")){
+      firebase.database().ref('paket-cicilan/' + key).remove((error) => {
+        if(error) {
+          console.log(error);
+        } else {
+          swal("Good job!", "Data terhapus!", "success").then((value) => {
+            location.reload();
+          });
+        }
+      });
+    }
   }
 
   const setHighlight = (key) => {
@@ -565,10 +534,8 @@
 <script>
   var contentPopUp = '';
   firebase.database().ref('pop-up/').once('value', (snapshot) => {
-
     snapshot.forEach((child) => {
       firebase.storage().ref('bfisyariah/pop-up').child(child.val().gambar).getDownloadURL().then(function(url){
-
         contentPopUp += 
         `<div class="card">
           <div class="card-header">
@@ -588,17 +555,17 @@
 
   const deletePopUp = (key) => {
     // Delete firebase realtime database
-    firebase.database().ref('pop-up/' + key).remove((error) => {
-      if(error) {
-        console.log(error);
-      } else {
-        swal("Good job!", "Data terhapus!", "success").then((value) => {
-          location.reload();
-        });
-      }
-    });
-    // console.log(key);
-    
+    if(confirm("Apakah anda yakin ingin menghapus data ini?")){
+      firebase.database().ref('pop-up/' + key).remove((error) => {
+        if(error) {
+          console.log(error);
+        } else {
+          swal("Good job!", "Data terhapus!", "success").then((value) => {
+            location.reload();
+          });
+        }
+      });
+    }
   }
 
   const setPopUp = () => {

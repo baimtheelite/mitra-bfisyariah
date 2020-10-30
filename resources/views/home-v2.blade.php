@@ -192,13 +192,13 @@
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <label for="no_hp">Nomor Whatsapp</label>
-                                <input type="text" class="form-control" name="no_hp" id="no_hp" minlength="7" maxlength="14" onkeypress="return isNumberKey(event)" required>
+                                <input type="number" class="form-control" name="no_hp" id="no_hp" minlength="7" maxlength="14" onkeypress="return isNumberKey(event)" required>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-lg-4 col-md-4">
                                 <label for="nilai_pembiayaan">Nilai Pembiayaan</label>
-                                <input type="text" class="form-control" name="nilai_pembiayaan" id="nilai_pembiayaan" onkeypress="return isNumberKey(event)" required>
+                                <input type="number" class="form-control" name="nilai_pembiayaan" id="nilai_pembiayaan" onkeypress="return isNumberKey(event)" required>
                             </div>
                             <div class="col-lg-4 col-md-4">
                                 <label for="tujuan_pembiayaan">Tujuan Pembiayaan</label>
@@ -206,8 +206,7 @@
                             </div>
                             <div class="col-lg-4 col-md-4">
                                 <label for="cabang_terdekat">Cabang Terdekat</label>
-                                {{-- <input type="text" class="form-control" name="cabang_terdekat" id="cabang_terdekat" required> --}}
-                                <select class="form-control" name="cabang_terdekat" id="cabang_terdekat">
+                                <select class="form-control" name="cabang_terdekat" id="cabang_terdekat" required>
                                     <option selected disabled value="">- Pilih Cabang -</option>
                                     @foreach ($branches as $branch)
                                     <option value="{{ $branch }}">{{ $branch }}</option>
@@ -218,13 +217,17 @@
                         {{-- <hr> --}}
                         <div class="separator">Jaminan</div>
                         <div class="form-row">
-                            <div class="col-lg-6 col-md-6">
+                            <div class="col-lg-4 col-md-4">
                                 <label for="merk_mobil">Merk Mobil</label>
                                 <input type="text" class="form-control" name="merk_mobil" id="merk_mobil" required>
                             </div>
-                            <div class="col-lg-6 col-md-6">
+                            <div class="col-lg-4 col-md-4">
                                 <label for="tipe_mobil">Tipe Mobil</label>
                                 <input type="text" class="form-control" name="tipe_mobil" id="tipe_mobil" required>
+                            </div>
+                            <div class="col-lg-4 col-md-4">
+                                <label for="tahun_mobil">Tahun Mobil</label>
+                                <input type="text" class="form-control" name="tahun_mobil" id="tahun_mobil" required>
                             </div>
                         </div>
                     
@@ -288,7 +291,9 @@
 {{-- Paket Cicilan --}}
 <section class="pt-4 pb-4">
     <div class="container">
-        <h2 class="text-center p-4">Paket Cicilan Tanpa Denda</h2>
+        <div class="title-paket-cicilan">
+            <h2 class="text-center p-4">Paket Cicilan Tanpa Denda</h2>
+        </div>
         <div class="row paket-cicilan">
             {{--  --}}
         </div>
@@ -495,7 +500,7 @@
             snapshot.forEach((child) => {
                 firebase.storage().ref('bfisyariah/paket-cicilan').child(child.val().gambar).getDownloadURL().then(function(url){
                     paketCicilanContent += `
-                    <div class="col-lg-4 col-md-4 col-6 p-0">
+                    <div class="col-lg-3 col-md-3 col-6 p-0">
                         <x-paket-trip judul="${child.val().title}" keterangan="${child.val().keterangan}" gambar="${url}" whatsapp="${child.val().whatsapp}" />               
                     </div>
                     `;
@@ -540,5 +545,4 @@
             })
         })
     </script>
-
 @endsection

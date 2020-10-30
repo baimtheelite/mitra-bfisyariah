@@ -101,7 +101,7 @@
                     </div>
                     <div class="form-group">
                         <label for="no_whatsapp">Nomor Whatsapp</label>
-                        <input type="text" class="form-control" name="no_whatsapp" id="no_whatsapp" required>
+                        <input type="number" class="form-control" name="no_whatsapp" id="no_whatsapp" onkeypress="return isNumberKey(event)" required>
                     </div>
                     <div class="form-group">
                         <label for="pesan">Pesan</label>
@@ -131,7 +131,9 @@
 {{-- Paket Cicilan --}}
 <section class="pt-4 pb-4">
     <div class="container">
-        <h2 class="text-center p-4">Paket Cicilan Tanpa Denda</h2>
+        <div class="title-paket-cicilan">
+            <h2 class="text-center p-4">Paket Cicilan Tanpa Denda</h2>
+        </div>
         <div class="row paket-cicilan">
             <div class="col-lg-4 col-md-4 p-0 paket-cicilan-big card shadow">
                 {{--  --}}
@@ -151,6 +153,17 @@
 @endsection
 
 @section('scripts')
+    {{-- input number only --}}
+    <script>
+        function isNumberKey(evt){
+            var charCode = (evt.which) ? evt.which : evt.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }
+    </script>
+
+    {{-- form kontak --}}
     <script>
         var database = firebase.database();
         var contactFormRef = database.ref('contact_form');
@@ -171,6 +184,19 @@
             data.forEach((item, index) => {
                 eval("dataObject." + item['name'] + " = item['value']");
             })
+
+            //get timestamp UTC
+            var d = new Date();
+            var date = d.getUTCDate();
+            var month = d.getUTCMonth();
+            var year = d.getUTCFullYear();
+            var hours = d.getUTCHours();
+            var minutes = d.getUTCMinutes();
+            var seconds = d.getUTCSeconds();
+
+            var fulldate = `${date}-${month}-${year} ${hours}:${minutes}:${seconds}`;
+
+            dataObject.tanggal_dikirim = fulldate;
             
             contactFormRef.push(dataObject, function(error){
                 if(error){
@@ -225,14 +251,14 @@
         })
     </script>
 
-     {{-- paket cicilan --}}
+    {{-- paket cicilan --}}
     <script>
         var paketCicilanContent = '';
         firebase.database().ref('paket-cicilan/').once('value', (snapshot) => {
             snapshot.forEach((child) => {
                 firebase.storage().ref('bfisyariah/paket-cicilan').child(child.val().gambar).getDownloadURL().then(function(url){
                     paketCicilanContent += `
-                    <div class="col-lg-4 col-md-4 col-6 p-0">
+                    <div class="col-lg-3 col-md-3 col-6 p-0">
                         <x-paket-trip judul="${child.val().title}" keterangan="${child.val().keterangan}" gambar="${url}" whatsapp="${child.val().whatsapp}" />               
                     </div>
                     `;

@@ -22,6 +22,7 @@
               <table class="table">
                 <thead>
                   <tr>
+                    <th>No.</th>
                     <th>Nama Lengkap</th>
                     <th>Nomor Whatsapp</th>
                     <th>Nilai Pembiayaan</th>
@@ -29,6 +30,8 @@
                     <th>Cabang Terdekat</th>
                     <th>Merk Mobil</th>
                     <th>Tipe Mobil</th>
+                    <th>Tahun Mobil</th>
+                    <th>Tanggal Input</th>
                   </tr>
                 </thead>
                 <tbody id="row-form-konsumen">
@@ -47,9 +50,11 @@
               <table class="table">
                 <thead>
                   <tr>
+                    <th>No.</th>
                     <th>Nama Lengkap</th>
                     <th>No Whatsapp</th>
                     <th>Pesan</th>
+                    <th>Tanggal Input</th>
                   </tr>
                 </thead>
                 <tbody id="row-kontak">
@@ -96,6 +101,13 @@
 @section('scripts')
 <script>
 
+    function isUndefined(val)
+    {
+      if(val == undefined)
+        return '-';
+      else
+        return val;
+    }
     // var dataTable = $("#data-form").dataTable();
     //get element
     var listData = document.getElementById("rows-data");
@@ -140,19 +152,24 @@
   {{-- Table Form Konsumen --}}
   <script>
     var rowsFormKonsumen = '';
+    var noFormKonsumen = 1;
     firebase.database().ref('/form').once('value', (snapshot) => {
       snapshot.forEach((child) => {
         rowsFormKonsumen += `
           <tr>
-            <td>${child.val().nama_lengkap}</td>
-            <td>${child.val().no_hp}</td>
-            <td>${child.val().nilai_pembiayaan}</td>
-            <td>${child.val().tujuan_pembiayaan}</td>
-            <td>${child.val().cabang_terdekat}</td>
-            <td>${child.val().merk_mobil}</td>
-            <td>${child.val().tipe_mobil}</td>
+            <td>${noFormKonsumen}</td>
+            <td>${isUndefined(child.val().nama_lengkap)}</td>
+            <td>${isUndefined(child.val().no_hp)}</td>
+            <td>${isUndefined(child.val().nilai_pembiayaan)}</td>
+            <td>${isUndefined(child.val().tujuan_pembiayaan)}</td>
+            <td>${isUndefined(child.val().cabang_terdekat)}</td>
+            <td>${isUndefined(child.val().merk_mobil)}</td>
+            <td>${isUndefined(child.val().tipe_mobil)}</td>
+            <td>${isUndefined(child.val().tahun_mobil)}</td>
+            <td>${isUndefined(child.val().created_at)}</td>
           </tr>
         `;
+      noFormKonsumen++;
       })
       document.querySelector("#row-form-konsumen").innerHTML = rowsFormKonsumen;
     })
@@ -161,15 +178,19 @@
   {{-- Table Form Kontak --}}
   <script>
     var rowsFormKontak = '';
+    var noFormKontak = 1;
     firebase.database().ref('/contact_form').once('value', (snapshot) => {
       snapshot.forEach((child) => {
         rowsFormKontak += `
           <tr>
-            <td>${child.val().nama_lengkap}</td>
-            <td>${child.val().no_whatsapp}</td>
-            <td>${child.val().pesan}</td>
+            <td>${noFormKontak}</td>
+            <td>${isUndefined(child.val().nama_lengkap)}</td>
+            <td>${isUndefined(child.val().no_whatsapp)}</td>
+            <td>${isUndefined(child.val().pesan)}</td>
+            <td>${isUndefined(child.val().tanggal_dikirim)}</td>
           </tr>
         `;
+      noFormKontak++;
       })
       document.querySelector("#row-kontak").innerHTML = rowsFormKontak;
     })
