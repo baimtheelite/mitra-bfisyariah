@@ -26,8 +26,14 @@
         .banner {   
             max-width: 1920px;
             max-height: 500px;
-            /* max-height: 400px */
         }
+
+        h2.heading-title {
+            font-size: 16px;
+            font-weight: bold
+        }
+
+        
     </style>
 @endsection
 

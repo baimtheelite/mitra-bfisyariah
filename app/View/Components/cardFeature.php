@@ -6,15 +6,15 @@ use Illuminate\View\Component;
 
 class cardFeature extends Component
 {
-    public $image, $title, $text;
+    public $icon, $title, $text;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($image, $title, $text)
+    public function __construct($icon, $title, $text)
     {
-        $this->image = $image;
+        $this->icon = $icon;
         $this->title = $title;
         $this->text = $text;
     }

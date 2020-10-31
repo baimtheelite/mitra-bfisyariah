@@ -2,7 +2,7 @@
   <a href="https://wa.me/6289655333987?text={{ $whatsapp }}">
     <img class="card-img-top img-fluid rounded-0" src="{{ $gambar }}" alt="Card image cap">
     <div class="overlay">
-      <small class="card-text">{{ $judul }}</small><br>
+      <h2 class="card-text heading-title p-0 m-0" style="color: #FEA82F">{{ $judul }}</h2>
       <small class="card-text">{{ $keterangan }}</small>
     </div>
   </a>

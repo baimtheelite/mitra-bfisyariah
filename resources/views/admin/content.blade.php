@@ -49,13 +49,9 @@
         <h3 class="card-title">Banner</h3>
       </div>
       <div class="card-body">
-        <div class="row">
-          <div class="col-lg-12 col-md-12">
-            <p>Gambar Banner yang ter-upload, disarankan upload gambarnya yang ukurannya 1500 x 500 px</p>
-            <div id="list-banner">
-              {{--  --}}
-            </div>
-          </div>
+        <p>Gambar Banner yang ter-upload, disarankan upload gambarnya yang ukurannya 1500 x 500 px</p>
+        <div class="row" id="list-banner">
+          {{--  --}}
         </div>
         <div class="row">
           <div class="col-md-12 col-lg-12">
@@ -73,13 +69,9 @@
         <h3 class="card-title">Paket Cicilan</h3>
       </div>
       <div class="card-body">
-        <div class="row">
-          <div class="col-lg-12 col-md-12">
-            <p>Gambar Paket Cicilan yang ter-upload, disarankan upload gambarnya ukuran 960 x 540 px</p>
-            <div id="list-paket-cicilan">
-              {{--  --}}
-            </div>
-          </div>
+        <p>Gambar Paket Cicilan yang ter-upload, disarankan upload gambarnya ukuran 960 x 540 px</p>
+        <div class="card-deck" id="list-paket-cicilan">
+          {{--  --}}
         </div>
         <div class="row">
           <div class="col-md-12 col-lg-12">
@@ -97,13 +89,9 @@
         <h3 class="card-title">Pop-up</h3>
       </div>
       <div class="card-body">
-        <div class="row">
-          <div class="col-lg-12 col-md-12">
-            <p>Pop-up yang akan tampil ketika halaman landing page dibuka, disarankan upload yang ukuran 400 X 600 px</p>
-            <div id="list-pop-up">
-              {{--  --}}
-            </div>
-          </div>
+        <p>Pop-up yang akan tampil ketika halaman landing page dibuka, disarankan upload yang ukuran 400 X 600 px</p>
+        <div class="card-deck" id="list-pop-up">
+          {{--  --}}
         </div>
         <div class="row">
           <div class="col-md-12 col-lg-12">
@@ -409,7 +397,7 @@
 
         content += `
         <div class="card d-inline">
-          <img class="image-content mr-2" src="${url}">
+          <img class="image-content img-fluid mr-2" src="${url}">
           <div class="card-img-overlay">
             <a class="btn btn-danger text-white delete-content" type="button" onclick="deleteStorage('${folder}', '${itemRef.name}')">Delete</a>
           </div>
@@ -483,13 +471,18 @@
 
         content += 
         `<div class="card">
-          <div class="card-body">
-            <button type="button" class="btn btn-danger float-right" onclick="deletePaketCicilan('${child.key}')">Delete</button>
-            <p class="card-title">${child.val().title}</p>
-            <p class="card-text">${child.val().keterangan}</p>
-            <img src="${url}" style="height: auto; width: 150px">
-          </div>
-        </div>`;
+            <div class="card-header bg-light">
+              <button type="button" class="btn btn-danger float-right" onclick="deletePaketCicilan('${child.key}')">Delete</button>
+            </div>
+            <div class="card-body">
+              <p class="card-title font-weight-bold">${child.val().title}</p>
+              <p class="card-text">${child.val().keterangan}</p>
+              <figure>
+                <img class="mx-auto text-center" src="${url}" style="height: auto; width: 150px">
+                <figcaption><small>alt: ${child.val().alt}</small></figcaption>
+              </figure>
+            </div>
+          </div>`;
 
         document.getElementById("list-paket-cicilan").innerHTML = content;
       });
@@ -501,6 +494,7 @@
     if(confirm("Apakah anda yakin ingin menghapus data ini?")){
       firebase.database().ref('paket-cicilan/' + key).remove((error) => {
         if(error) {
+          swal("Gagal!", "Data menghapus paket cicilan!", "error");
           console.log(error);
         } else {
           swal("Good job!", "Data terhapus!", "success").then((value) => {
@@ -519,12 +513,10 @@
         firebase.database().ref('paket-cicilan/' + checkedHighlight[i].dataset.key).update({
           highlight : true
         })
-        // console.log(`${checkedHighlight[i].dataset.key} : true`);
       } else {
         firebase.database().ref('paket-cicilan/' + checkedHighlight[i].dataset.key).update({
           highlight : false
         })
-        // console.log(`${checkedHighlight[i].dataset.key} : false`);
       }
     }
   }
@@ -541,10 +533,10 @@
           <div class="card-header">
             <input name="pop-up-display" data-key="${child.key}" onclick="setPopUp()" type="radio" ${child.val().display == true ? 'checked' : ''}>
             <label for="pop-up-display">Display</label>
+            <button type="button" class="btn btn-danger float-right" onclick="deletePopUp('${child.key}')">Delete</button>
           </div>
           <div class="card-body">
-            <button type="button" class="btn btn-danger float-right" onclick="deletePopUp('${child.key}')">Delete</button>
-            <img src="${url}" style="height: auto; width: 150px">
+            <img class="img-fluid" src="${url}" style="height: auto; width: 150px">
           </div>
         </div>`;
 
@@ -558,9 +550,10 @@
     if(confirm("Apakah anda yakin ingin menghapus data ini?")){
       firebase.database().ref('pop-up/' + key).remove((error) => {
         if(error) {
+          swal("Gagal!", "Gagal menghapus popup!", "error")
           console.log(error);
         } else {
-          swal("Good job!", "Data terhapus!", "success").then((value) => {
+          swal("Good job!", "Pop-up terhapus!", "success").then((value) => {
             location.reload();
           });
         }
@@ -575,10 +568,22 @@
       if(checkedDisplay[i].checked) {
         firebase.database().ref('pop-up/' + checkedDisplay[i].dataset.key).update({
           display : true
+        }, (error) => {
+          if(error) {
+            swal("Gagal!", "Gagal memilih pop-up!", "error")
+          } else {
+            swal("Good job!", "Popup terpilih!", "success");
+          }
         })
       } else {
         firebase.database().ref('pop-up/' + checkedDisplay[i].dataset.key).update({
           display : false
+        }, (error) => {
+          if(error) {
+            swal("Gagal!", "Gagal memilih popup!", "error")
+          } else {
+            swal("Good job!", "Popup terpilih!", "success");
+          }
         })
       }
     }

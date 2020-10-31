@@ -145,6 +145,11 @@
         .separator::after {
             margin-left: .25em;
         }
+
+        h2.heading-title {
+            font-size: 16px;
+            font-weight: bold
+        }
     </style>
 @endsection
 
@@ -254,15 +259,22 @@
         <div class="row">
             <div id="partner-carousel" class="owl-carousel owl-theme">
                 <div class="item d-flex">
-                    <x-card-feature image="img/bfi.png" title="Tanpa Denda" text="Tidak ada biaya keterlambatan pembayaran angsuran" />
+                    <x-card-feature 
+                        icon="home"
+                        title="Tanpa Denda" 
+                        text="Tidak ada biaya keterlambatan pembayaran angsuran" />
                 </div>
                 <div class="item d-flex">
-                    <x-card-feature image="img/bfi.png" title="Tanpa Provisi" text="Tidak dikenakan biaya provisi pada pembiayaan
-                    di BFI Finance" />
+                    <x-card-feature 
+                        icon="dollar-sign"
+                        title="Tanpa Provisi" 
+                        text="Tidak dikenakan biaya provisi pada pembiayaan di BFI Finance" />
                 </div>
                 <div class="item d-flex">
-                    <x-card-feature image="img/bfi.png" title="Akad" text="Transaksi murni jual-beli bukan menerima
-                    dana tunai" />
+                    <x-card-feature 
+                        icon="dollar-sign"
+                        title="Akad" 
+                        text="Transaksi murni jual-beli bukan menerima dana tunai" />
                 </div>
             </div>
         </div>
@@ -324,19 +336,16 @@
 
 {{-- Modal Pop-up --}}
 <div id="pop-up" class="modal fade">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Pop-up</h5>
+                {{-- <h5 class="modal-title">Pop-up</h5>  --}}
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body p-0">
                 <div id="pop-up-image">
                     {{--  --}}
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button id="dont-show" type="button" class="btn btn-defaut" data-dismiss="modal">Jangan Tampilkan lagi</button>
             </div>
         </div>
     </div>
@@ -506,7 +515,11 @@
                 firebase.storage().ref('bfisyariah/paket-cicilan').child(child.val().gambar).getDownloadURL().then(function(url){
                     paketCicilanContent += `
                     <div class="col-lg-3 col-md-3 col-6 p-0">
-                        <x-paket-trip judul="${child.val().title}" keterangan="${child.val().keterangan}" gambar="${url}" whatsapp="${child.val().whatsapp}" />               
+                        <x-paket-trip 
+                            judul="${child.val().title}"
+                            keterangan="${child.val().keterangan}"
+                            gambar="${url}"
+                            whatsapp="${child.val().whatsapp}" />               
                     </div>
                     `;
                     document.querySelector(".paket-cicilan").innerHTML = paketCicilanContent;
@@ -529,7 +542,7 @@
                         //jika gambar pop-up, di ceklis
                         if (child.val().display == true) {
                             content = `
-                                <img class="mx-auto d-block" src=${url} />
+                                <img class="img-fluid w-100" src=${url} />
                             `;
                             popUpImage.innerHTML = content
                         }
